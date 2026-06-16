@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>دليل الحاسب</title>
-    <!-- استيراد خط Cairo الحديث من جوجل -->
+    <!-- استيراد خط Cairo المماثل للصورة تماماً -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
     <!-- Font Awesome للأيقونات -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -15,7 +15,7 @@
             --bg-card: #161b22;
             --text-main: #ffffff;
             --text-sec: #8b949e;
-            --primary-blue: #33ffd8; /* لون التركواز المضيء من الصورة */
+            --primary-blue: #33ffd8; /* لون التركواز المضيء في الصورة */
             --glow: rgba(51, 255, 216, 0.6);
             --border: #30363d;
             --btn-bg: rgba(255, 255, 255, 0.05);
@@ -33,8 +33,7 @@
         }
 
         body {
-            /* تطبيق الخط الجديد هنا */
-            font-family: 'Cairo', sans-serif;
+            font-family: 'Cairo', sans-serif; /* الخط المطلوب */
             background-color: var(--bg-body);
             color: var(--text-main);
             margin: 0; padding: 0;
@@ -56,21 +55,19 @@
             text-align: center; flex: 1;
         }
 
-        /* تنسيق العنوان بنفس التوهج والخط العريض */
         h1 {
-            font-weight: 900; /* عريض جداً مثل الصورة */
+            font-weight: 900;
             font-size: 3.5rem;
             color: var(--primary-blue);
-            /* تأثير التوهج المضيء */
             text-shadow: 0 0 10px var(--glow), 0 0 20px var(--glow);
-            margin-bottom: 30px;
-            letter-spacing: -1px;
+            margin-bottom: 10px;
         }
 
         .subtitle {
             color: var(--text-sec);
             margin-bottom: 40px;
             font-size: 1.1rem;
+            font-weight: 600;
         }
 
         /* التبويبات */
@@ -81,14 +78,13 @@
         .tab-link {
             padding: 10px 20px; cursor: pointer; font-size: 1.2rem;
             color: var(--text-sec); border-bottom: 3px solid transparent;
-            font-weight: 700;
-            transition: 0.3s;
+            font-weight: 700; transition: 0.3s;
         }
         .tab-link.active {
             color: var(--primary-blue); border-color: var(--primary-blue);
         }
 
-        /* شبكة المستويات */
+        /* شبكة أزرار المستويات */
         .levels-grid {
             display: none; grid-template-columns: repeat(4, 1fr); gap: 10px;
             margin-bottom: 30px;
@@ -97,7 +93,7 @@
             background: var(--bg-card); border: 1px solid var(--border);
             color: var(--text-main); padding: 12px; border-radius: 12px;
             cursor: pointer; transition: 0.2s; font-family: 'Cairo';
-            font-weight: 600;
+            font-weight: 700;
         }
         .level-btn.active {
             background: var(--primary-blue); color: #000; font-weight: 900;
@@ -108,6 +104,7 @@
             background: var(--bg-card); border: 1px solid var(--border);
             border-radius: 25px; padding: 30px; margin-top: 20px;
             box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            min-height: 200px;
         }
 
         .section-header {
@@ -121,7 +118,7 @@
             background: var(--btn-bg); color: var(--text-main);
             text-decoration: none; padding: 18px 25px; margin: 12px 0;
             border-radius: 50px; border: 1px solid transparent; transition: 0.3s;
-            font-weight: 600;
+            font-weight: 700;
         }
         .link-item:hover { 
             border-color: var(--primary-blue); 
@@ -144,9 +141,9 @@
         }
     </style>
 </head>
-<body>
+<body data-theme="dark">
 
-    <i class="fas fa-cog settings-icon" title="تغيير الوضع" onclick="toggleTheme()"></i>
+    <i class="fas fa-cog settings-icon" title="الإعدادات (ليلي/نهاري)" onclick="toggleTheme()"></i>
 
     <div class="container">
         <h1>دليل الحاسب</h1>
@@ -157,6 +154,7 @@
             <div class="tab-link" onclick="switchTab('levels')">المستويات</div>
         </div>
 
+        <!-- أزرار المستويات تظهر عند الضغط على "المستويات" -->
         <div id="levels-grid" class="levels-grid">
             <button class="level-btn" onclick="loadLevel(1)">الأول</button>
             <button class="level-btn" onclick="loadLevel(2)">الثاني</button>
@@ -169,7 +167,7 @@
         </div>
 
         <div id="content-display" class="card">
-            <!-- المحتوى الافتراضي للكلية -->
+            <!-- محتوى الكلية الافتراضي -->
             <div class="section-header"><i class="fas fa-university"></i> قروبات كلية الحاسب</div>
             <a href="https://t.me/qassimuniversityc" target="_blank" class="link-item"><span>قناة كلية الحاسب</span><i class="fas fa-bullhorn"></i></a>
             <a href="https://t.me/qassimuniversityIT" target="_blank" class="link-item"><span>مناقشة كلية الحاسب</span><i class="fas fa-comments"></i></a>
@@ -189,17 +187,18 @@
 
     <script>
         const levels = {
-            1: { m: "https://t.me/addlist/LH-wE8fs_4ExNjE0", c: "https://t.me/hawsib1", d: "https://t.me/hawsib_1" },
-            2: { m: "https://t.me/addlist/UZHn4fPZTvI4ODBk", c: "https://t.me/hawsib2", d: "https://t.me/hawsib2" },
-            3: { m: "https://t.me/addlist/WY-nb6Wz4EtkYjZk", c: "https://t.me/hawsib3", d: "https://t.me/hawsib_3" },
-            4: { m: "https://t.me/addlist/ED-1PugxTU42NjE8", c: "https://t.me/hawsib3", d: "https://t.me/hawsib4" },
+            1: { name: "الأول", m: "https://t.me/addlist/LH-wE8fs_4ExNjE0", c: "https://t.me/hawsib1", d: "https://t.me/hawsib_1" },
+            2: { name: "الثاني", m: "https://t.me/addlist/UZHn4fPZTvI4ODBk", c: "https://t.me/hawsib2", d: "https://t.me/hawsib2" },
+            3: { name: "الثالث", m: "https://t.me/addlist/WY-nb6Wz4EtkYjZk", c: "https://t.me/hawsib3", d: "https://t.me/hawsib_3" },
+            4: { name: "الرابع", m: "https://t.me/addlist/ED-1PugxTU42NjE8", c: "https://t.me/hawsib3", d: "https://t.me/hawsib4" },
             5: { 
+                name: "الخامس",
                 moves: [{t: "IT", l: "https://t.me/IT_5_moves"}, {t: "CS", l: "https://t.me/Brightofcs5"}, {t: "CE", l: "https://t.me/CEGOATS/1"}],
                 c: "https://t.me/hawsib5", d: "https://t.me/hawsib_5"
             },
-            6: { moves: [{t: " جميع التخصصات", l: "https://t.me/COC_6_moves"}], c: "https://t.me/hawsib6", d: "https://t.me/hawsib_6" },
-            7: { moves: [{t: " جميع التخصصات", l: "https://t.me/COC_7_moves"}] },
-            8: { moves: [{t: " جميع التخصصات", l: "https://t.me/COC_8_moves"}] }
+            6: { name: "السادس", moves: [{t: "جميع التخصصات", l: "https://t.me/COC_6_moves"}], c: "https://t.me/hawsib6", d: "https://t.me/hawsib_6" },
+            7: { name: "السابع", moves: [{t: "جميع التخصصات", l: "https://t.me/COC_7_moves"}] },
+            8: { name: "الثامن", moves: [{t: "جميع التخصصات", l: "https://t.me/COC_8_moves"}] }
         };
 
         function switchTab(type) {
@@ -226,11 +225,12 @@
 
         function loadLevel(n) {
             document.querySelectorAll('.level-btn').forEach(b => b.classList.remove('active'));
-            if(event.target.tagName === 'BUTTON') event.target.classList.add('active');
+            // إذا كان الاستدعاء من زر، نفعله
+            const btns = document.querySelectorAll('.level-btn');
+            btns[n-1].classList.add('active');
             
             const data = levels[n];
-            const name = ["الأول","الثاني","الثالث","الرابع","الخامس","السادس","السابع","الثامن"][n-1];
-            let html = `<h2 style="color:var(--primary-blue)">المستوى ${name}</h2>`;
+            let html = `<h2 style="color:var(--primary-blue); font-weight:900;">المستوى ${data.name}</h2>`;
 
             if (data.m) {
                 html += `<div class="section-header"><i class="fas fa-link"></i> قنوات مستديم</div>
@@ -238,19 +238,22 @@
             }
             if (data.moves) {
                 html += `<div class="section-header"><i class="fas fa-link"></i> Moves</div>`;
-                data.moves.forEach(m => html += `<a href="${m.l}" target="_blank" class="link-item"><span>${m.t}</span><i class="fas fa-link"></i></a>`);
+                data.moves.forEach(m => {
+                    html += `<a href="${m.l}" target="_blank" class="link-item"><span>${m.t}</span><i class="fas fa-link"></i></a>`;
+                });
             }
             if (data.c) {
                 html += `<div class="section-header"><i class="fas fa-users"></i> حوسب</div>
-                         <a href="${data.c}" target="_blank" class="link-item"><span>قناة المستوى</span><i class="fas fa-bullhorn"></i></a>
-                         <a href="${data.d}" target="_blank" class="link-item"><span>مناقشة المستوى</span><i class="fas fa-comments"></i></a>`;
+                         <a href="${data.c}" target="_blank" class="link-item"><span>قناة المستوى ${data.name}</span><i class="fas fa-bullhorn"></i></a>
+                         <a href="${data.d}" target="_blank" class="link-item"><span>مناقشة المستوى ${data.name}</span><i class="fas fa-comments"></i></a>`;
             }
             document.getElementById('content-display').innerHTML = html;
         }
 
         function toggleTheme() {
             const body = document.body;
-            body.setAttribute('data-theme', body.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
+            const current = body.getAttribute('data-theme');
+            body.setAttribute('data-theme', current === 'light' ? 'dark' : 'light');
         }
     </script>
 </body>
