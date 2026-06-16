@@ -1,44 +1,92 @@
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 
 <head>
 
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>دليل الحاسب</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
 <style>
 
 *{
+
 margin:0;
+
 padding:0;
+
 box-sizing:border-box;
+
 font-family:'Cairo',sans-serif;
+
+}
+
+html{
+
+scroll-behavior:smooth;
+
 }
 
 body{
 
-background:linear-gradient(180deg,#02040c,#071326,#0d2343);
+background:
+radial-gradient(circle at top,#1c3f89 0%,transparent 30%),
+radial-gradient(circle at bottom,#35105f 0%,transparent 25%),
+#03060f;
 
-color:#fff;
+color:white;
 
 min-height:100vh;
 
-padding:35px 18px;
+overflow-x:hidden;
+
+}
+
+body::before{
+
+content:"";
+
+position:fixed;
+
+inset:0;
+
+background-image:
+radial-gradient(rgba(255,255,255,.08) 1px,transparent 1px);
+
+background-size:45px 45px;
+
+opacity:.18;
+
+pointer-events:none;
 
 }
 
 .container{
 
-max-width:900px;
+width:min(950px,92%);
 
 margin:auto;
 
+padding:40px 0 60px;
+
+position:relative;
+
+z-index:2;
+
 }
 
-.profile{
+header{
 
 text-align:center;
 
@@ -52,75 +100,86 @@ width:120px;
 
 height:120px;
 
-border-radius:50%;
-
 margin:auto;
 
+border-radius:50%;
+
 display:flex;
+
+align-items:center;
 
 justify-content:center;
 
-align-items:center;
+background:linear-gradient(135deg,#2358d8,#0c1730);
 
-font-size:55px;
+font-size:50px;
 
-background:linear-gradient(135deg,#0f2d63,#08111d);
-
-box-shadow:0 0 35px rgba(0,90,255,.45);
+box-shadow:0 0 35px rgba(82,132,255,.45);
 
 margin-bottom:20px;
 
 }
 
-h1{
+header h1{
 
-font-size:48px;
+font-size:52px;
 
 font-weight:800;
 
+color:#7fb0ff;
+
 }
 
-.subtitle{
+header p{
 
 margin-top:10px;
 
-font-size:18px;
+font-size:20px;
 
-color:#b7c9ff;
+color:#cbd9ff;
 
 }
 
-.section{
+.glass{
 
-margin-top:40px;
+background:rgba(255,255,255,.06);
+
+border:1px solid rgba(255,255,255,.12);
+
+backdrop-filter:blur(18px);
+
+border-radius:28px;
 
 padding:28px;
 
-border-radius:25px;
+margin-bottom:28px;
 
-background:rgba(255,255,255,.05);
-
-border:1px solid rgba(72,123,255,.35);
-
-backdrop-filter:blur(12px);
+box-shadow:0 15px 40px rgba(0,0,0,.25);
 
 }
 
-.section h2{
-
-font-size:34px;
-
-margin-bottom:20px;
+.section-title{
 
 display:flex;
 
-justify-content:space-between;
-
 align-items:center;
+
+gap:12px;
+
+font-size:32px;
+
+font-weight:800;
+
+margin-bottom:22px;
 
 }
 
-.item{
+.section-title i{
+
+color:#79a9ff;
+
+}
+  .item{
 
 display:flex;
 
@@ -132,280 +191,31 @@ padding:18px 22px;
 
 margin:14px 0;
 
-background:#070913;
+border-radius:18px;
 
-border-radius:40px;
+background:rgba(255,255,255,.05);
 
-transition:.25s;
-
-text-decoration:none;
+border:1px solid rgba(255,255,255,.08);
 
 color:#fff;
+
+text-decoration:none;
 
 font-size:20px;
 
 font-weight:700;
 
-}
-
-.item:hover{
-
-background:#0f1c3b;
-
-transform:scale(1.02);
-</style>
-
-</head>
-
-<body>
-
-<div class="background"></div>
-
-<div class="container">
-
-<header>
-
-<h1>دليل الحاسب</h1>
-
-<p>
-كل روابط كلية الحاسب في مكان واحد
-</p>
-
-</header>
-
-
-
-<section class="glass">
-
-<h2>
-
-<i class="fa-solid fa-building-columns"></i>
-
-قروبات كلية الحاسب
-
-</h2>
-
-<div class="links">
-  <a href="https://t.me/qassimuniversityc" target="_blank" class="item">
-
-<span>
-
-<i class="fa-solid fa-bullhorn"></i>
-
-قناة كلية الحاسب
-
-</span>
-
-</a>
-
-  <a href="https://t.me/qassimuniversityIT" target="_blank" class="item">
-
-<span>
-
-<i class="fa-solid fa-users"></i>
-
-مناقشة كلية الحاسب
-
-</span>
-
-</a>
-  
-<a href="https://t.me/COC_QU_channel" target="_blank" class="item">
-
-<span>
-
-<i class="fa-solid fa-bullhorn"></i>
-
-قناة حوسب
-
-</span>
-
-</a>
-<a href="https://t.me/COC_QU" target="_blank" class="item">
-
-<span>
-
-<i class="fa-solid fa-users"></i>
-
-مناقشة حوسب
-
-</span>
-
-</a>
-<head>
-
-<style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Cairo',sans-serif;
-}
-
-body{
-
-background:
-radial-gradient(circle at top,#143d8d 0%,transparent 35%),
-radial-gradient(circle at bottom,#28135a 0%,transparent 30%),
-#04070f;
-
-color:#fff;
-
-min-height:100vh;
-
-overflow-x:hidden;
-
-}
-
-.background{
-
-position:fixed;
-
-inset:0;
-
-background-image:
-radial-gradient(rgba(255,255,255,.15) 1px,transparent 1px);
-
-background-size:45px 45px;
-
-opacity:.15;
-
-z-index:-1;
-
-}
-
-.container{
-
-width:min(900px,92%);
-
-margin:auto;
-
-padding:45px 0;
-
-}
-
-header{
-
-text-align:center;
-
-margin-bottom:45px;
-
-}
-
-header h1{
-
-font-size:62px;
-
-font-weight:800;
-
-color:#6b8cff;
-
-margin-bottom:10px;
-
-text-shadow:0 0 25px rgba(91,131,255,.45);
-
-}
-
-header p{
-
-font-size:23px;
-
-color:#c8d4ff;
-
-}
-
-.glass{
-
-background:rgba(255,255,255,.06);
-
-border:1px solid rgba(255,255,255,.12);
-
-border-radius:28px;
-
-padding:35px;
-
-margin-bottom:35px;
-
-backdrop-filter:blur(18px);
-
-box-shadow:
-0 15px 45px rgba(0,0,0,.35),
-0 0 25px rgba(76,118,255,.15);
-
-}
-
-.glass h2{
-
-display:flex;
-
-align-items:center;
-
-justify-content:flex-start;
-
-gap:12px;
-
-font-size:38px;
-
-margin-bottom:30px;
-
-color:#fff;
-
-}
-
-.glass h2 i{
-
-color:#5f8dff;
-
-}
-
-.links{
-
-display:flex;
-
-flex-direction:column;
-
-gap:18px;
-
-}
-
-.item{
-
-display:flex;
-
-justify-content:space-between;
-
-align-items:center;
-
-padding:20px 28px;
-
-background:#070b17;
-
-border:2px solid transparent;
-
-border-radius:50px;
-
-text-decoration:none;
-
-color:#fff;
-
-font-size:24px;
-
-font-weight:700;
-
 transition:.25s;
 
 }
 
 .item:hover{
 
-transform:translateY(-3px);
+background:rgba(74,123,255,.18);
 
-border-color:#4f8cff;
+border-color:#6b9bff;
 
-background:#122246;
-
-box-shadow:0 0 20px rgba(79,140,255,.35);
+transform:translateY(-2px);
 
 }
 
@@ -415,23 +225,43 @@ display:flex;
 
 align-items:center;
 
-gap:15px;
+gap:14px;
 
 }
 
 .item i{
 
-font-size:28px;
+width:24px;
 
-color:#80a8ff;
+text-align:center;
+
+color:#7fb0ff;
 
 }
 
-.level-title{
+details{
 
-font-size:34px;
+margin-bottom:18px;
 
-margin-bottom:25px;
+background:rgba(255,255,255,.04);
+
+border-radius:18px;
+
+overflow:hidden;
+
+border:1px solid rgba(255,255,255,.08);
+
+}
+
+summary{
+
+list-style:none;
+
+cursor:pointer;
+
+padding:18px 22px;
+
+font-size:24px;
 
 font-weight:800;
 
@@ -441,21 +271,25 @@ align-items:center;
 
 gap:12px;
 
-color:white;
+background:rgba(255,255,255,.05);
 
 }
 
-.level-title i{
+summary::-webkit-details-marker{
 
-color:#5f8dff;
+display:none;
+
+}
+
+.links{
+
+padding:0 18px 18px;
 
 }
 
 footer{
 
-margin-top:60px;
-
-padding:22px 10px;
+margin-top:40px;
 
 display:flex;
 
@@ -463,29 +297,29 @@ justify-content:space-between;
 
 align-items:center;
 
-border-top:1px solid rgba(255,255,255,.15);
+padding-top:24px;
 
-color:#c7d4ff;
-
-font-size:20px;
+border-top:1px solid rgba(255,255,255,.1);
 
 }
 
 footer a{
 
-color:#5f8dff;
+font-size:28px;
+
+color:#7fb0ff;
 
 text-decoration:none;
 
-font-size:28px;
-
-transition:.25s;
-
 }
 
-footer a:hover{
+footer span{
 
-transform:scale(1.15);
+font-size:18px;
+
+font-weight:700;
+
+color:#d8e5ff;
 
 }
 
@@ -493,370 +327,376 @@ transform:scale(1.15);
 
 header h1{
 
-font-size:46px;
+font-size:38px;
 
 }
 
-header p{
+.section-title{
 
-font-size:18px;
-
-}
-
-.glass{
-
-padding:22px;
+font-size:24px;
 
 }
 
-.glass h2{
+summary{
 
-font-size:28px;
+font-size:20px;
 
 }
 
 .item{
 
-font-size:19px;
-
-padding:18px 22px;
-
-}
-
-.item i{
-
-font-size:23px;
-
-}
-
-footer{
-
-font-size:16px;
+font-size:17px;
 
 }
 
 }
+.tg-icon{
 
+width:24px;
+
+height:24px;
+
+margin-left:10px;
+
+vertical-align:middle;
+
+flex-shrink:0;
+
+}
 </style>
+
 </head>
-  
-<!-- ================= المستويات ================= -->
+
+<body>
+
+<div class="container">
+
+<header>
+
+<div class="logo">
+💻
+</div>
+
+<h1>دليل الحاسب</h1>
+
+<p>كل روابط كلية الحاسب في مكان واحد</p>
+
+</header>
+  <section class="glass">
+
+<div class="section-title">
+
+<i class="fa-solid fa-building-columns"></i>
+
+<span>قروبات كلية الحاسب</span>
+
+</div>
+
+<div class="links">
+
+<a class="item"
+href="https://t.me/qassimuniversityc"
+target="_blank">
+
+<span>
+
+<img class="tg-icon"
+src="https://cdn.simpleicons.org/telegram/229ED9"
+alt="">
+
+قناة كلية الحاسب
+
+</span>
+
+<i class="fa-solid fa-chevron-left"></i>
+
+</a>
+
+<a class="item"
+href="https://t.me/qassimuniversityIT"
+target="_blank">
+
+<span>
+
+<img class="tg-icon"
+src="https://cdn.simpleicons.org/telegram/229ED9"
+alt="">
+
+مناقشة كلية الحاسب
+
+</span>
+
+<i class="fa-solid fa-chevron-left"></i>
+
+</a>
+
+<a class="item"
+href="https://t.me/COC_QU_channel"
+target="_blank">
+
+<span>
+
+<img class="tg-icon"
+src="https://cdn.simpleicons.org/telegram/229ED9"
+alt="">
+
+قناة حوسب
+
+</span>
+
+<i class="fa-solid fa-chevron-left"></i>
+
+</a>
+
+<a class="item"
+href="https://t.me/COC_QU"
+target="_blank">
+
+<span>
+
+<img class="tg-icon"
+src="https://cdn.simpleicons.org/telegram/229ED9"
+alt="">
+
+مناقشة حوسب
+
+</span>
+
+<i class="fa-solid fa-chevron-left"></i>
+
+</a>
+
+</div>
+
+</section>
 
 <section class="glass">
 
-<h2>
+<div class="section-title">
 
 <i class="fa-solid fa-layer-group"></i>
 
-المستويات
-
-</h2>
-
-<!-- المستوى الأول -->
-
-<div class="level-title">
-
-<i class="fa-solid fa-1"></i>
-
-المستوى الأول
+<span>المستويات</span>
 
 </div>
+  <details open>
+
+<summary>📚 المستوى الأول</summary>
 
 <div class="links">
 
-<a class="item"
-href="https://t.me/addlist/LH-wE8fs_4ExNjE0"
-target="_blank">
-
-<span>
-
-<i class="fa-solid fa-folder-open"></i>
-
-قنوات مستديم
-
-</span>
-
+<a class="item" href="https://t.me/addlist/LH-wE8fs_4ExNjE0" target="_blank">
+<span><img class="tg-icon" src="https://cdn.simpleicons.org/telegram/229ED9">قنوات مستديم</span>
+<i class="fa-solid fa-chevron-left"></i>
 </a>
 
-<a class="item"
-href="https://t.me/hawsib1"
-target="_blank">
-
-<span>
-
-<i class="fa-solid fa-bullhorn"></i>
-
-قناة المستوى الأول
-
-</span>
-
+<a class="item" href="https://t.me/hawsib1" target="_blank">
+<span><img class="tg-icon" src="https://cdn.simpleicons.org/telegram/229ED9">قناة المستوى الأول</span>
+<i class="fa-solid fa-chevron-left"></i>
 </a>
 
-<a class="item"
-href="https://t.me/hawsib_1"
-target="_blank">
-
-<span>
-
-<i class="fa-solid fa-users"></i>
-
-مناقشة المستوى الأول
-
-</span>
-
+<a class="item" href="https://t.me/hawsib_1" target="_blank">
+<span><img class="tg-icon" src="https://cdn.simpleicons.org/telegram/229ED9">مناقشة المستوى الأول</span>
+<i class="fa-solid fa-chevron-left"></i>
 </a>
 
 </div>
 
-<!-- المستوى الثاني -->
+</details>
 
-<div class="level-title">
 
-المستوى الثاني
 
-</div>
+<details>
+
+<summary>📚 المستوى الثاني</summary>
 
 <div class="links">
 
-<a class="item"
-href="https://t.me/addlist/UZHn4fPZTvI4ODBk"
-target="_blank">
-
-<span>
-
-<i class="fa-solid fa-folder-open"></i>
-
-قنوات مستديم
-
-</span>
-
+<a class="item" href="https://t.me/addlist/UZHn4fPZTvI4ODBk" target="_blank">
+<span><img class="tg-icon" src="https://cdn.simpleicons.org/telegram/229ED9">قنوات مستديم</span>
+<i class="fa-solid fa-chevron-left"></i>
 </a>
 
-<a class="item"
-href="https://t.me/hawsib2"
-target="_blank">
-
-<span>
-
-<i class="fa-solid fa-bullhorn"></i>
-
-قناة المستوى الثاني
-
-</span>
-
+<a class="item" href="https://t.me/hawsib2" target="_blank">
+<span><img class="tg-icon" src="https://cdn.simpleicons.org/telegram/229ED9">قناة المستوى الثاني</span>
+<i class="fa-solid fa-chevron-left"></i>
 </a>
 
-<a class="item"
-href="https://t.me/hawsib2"
-target="_blank">
-
-<span>
-
-<i class="fa-solid fa-users"></i>
-
-مناقشة المستوى الثاني
-
-</span>
-
+<a class="item" href="https://t.me/hawsib2" target="_blank">
+<span><img class="tg-icon" src="https://cdn.simpleicons.org/telegram/229ED9">مناقشة المستوى الثاني</span>
+<i class="fa-solid fa-chevron-left"></i>
 </a>
 
 </div>
 
-<!-- المستوى الثالث -->
+</details>
 
-<div class="level-title">
 
-المستوى الثالث
 
-</div>
+<details>
+
+<summary>📚 المستوى الثالث</summary>
 
 <div class="links">
 
-<a class="item"
-href="https://t.me/addlist/WY-nb6Wz4EtkYjZk"
-target="_blank">
-
-<span>
-
-<i class="fa-solid fa-folder-open"></i>
-
-قنوات مستديم
-
-</span>
-
+<a class="item" href="https://t.me/addlist/WY-nb6Wz4EtkYjZk" target="_blank">
+<span><img class="tg-icon" src="https://cdn.simpleicons.org/telegram/229ED9">قنوات مستديم</span>
+<i class="fa-solid fa-chevron-left"></i>
 </a>
 
-<a class="item"
-href="https://t.me/hawsib3"
-target="_blank">
-
-<span>
-
-<i class="fa-solid fa-bullhorn"></i>
-
-قناة المستوى الثالث
-
-</span>
-
+<a class="item" href="https://t.me/hawsib3" target="_blank">
+<span><img class="tg-icon" src="https://cdn.simpleicons.org/telegram/229ED9">قناة المستوى الثالث</span>
+<i class="fa-solid fa-chevron-left"></i>
 </a>
 
-<a class="item"
-href="https://t.me/hawsib_3"
-target="_blank">
-
-<span>
-
-<i class="fa-solid fa-users"></i>
-
-مناقشة المستوى الثالث
-
-</span>
-
+<a class="item" href="https://t.me/hawsib_3" target="_blank">
+<span><img class="tg-icon" src="https://cdn.simpleicons.org/telegram/229ED9">مناقشة المستوى الثالث</span>
+<i class="fa-solid fa-chevron-left"></i>
 </a>
 
 </div>
 
-<!-- المستوى الرابع -->
+</details>
 
-<div class="level-title">
 
-المستوى الرابع
 
-</div>
+<details>
+
+<summary>📚 المستوى الرابع</summary>
 
 <div class="links">
 
-<a class="item"
-href="https://t.me/addlist/ED-1PugxTU42NjE8"
-target="_blank">
-
-<span>
-
-<i class="fa-solid fa-folder-open"></i>
-
-قنوات مستديم
-
-</span>
-
+<a class="item" href="https://t.me/addlist/ED-1PugxTU42NjE8" target="_blank">
+<span><img class="tg-icon" src="https://cdn.simpleicons.org/telegram/229ED9">قنوات مستديم</span>
+<i class="fa-solid fa-chevron-left"></i>
 </a>
 
-<a class="item"
-href="https://t.me/hawsib4"
-target="_blank">
-
-<span>
-
-<i class="fa-solid fa-bullhorn"></i>
-
-قناة المستوى الرابع
-
-</span>
-
+<a class="item" href="https://t.me/hawsib4" target="_blank">
+<span><img class="tg-icon" src="https://cdn.simpleicons.org/telegram/229ED9">قناة المستوى الرابع</span>
+<i class="fa-solid fa-chevron-left"></i>
 </a>
 
-<a class="item"
-href="https://t.me/hawsib4"
-target="_blank">
-
-<span>
-
-<i class="fa-solid fa-users"></i>
-
-مناقشة المستوى الرابع
-
-</span>
-
+<a class="item" href="https://t.me/hawsib4" target="_blank">
+<span><img class="tg-icon" src="https://cdn.simpleicons.org/telegram/229ED9">مناقشة المستوى الرابع</span>
+<i class="fa-solid fa-chevron-left"></i>
 </a>
 
 </div>
 
+</details>
+  <details>
+
+<summary>📚 المستوى الخامس</summary>
+
+<div class="links">
+
+<a class="item" href="https://t.me/IT_5_moves" target="_blank">
+<span><img class="tg-icon" src="https://cdn.simpleicons.org/telegram/229ED9">Moves IT</span>
+<i class="fa-solid fa-chevron-left"></i>
+</a>
+
+<a class="item" href="https://t.me/Brightofcs5" target="_blank">
+<span><img class="tg-icon" src="https://cdn.simpleicons.org/telegram/229ED9">Moves CS</span>
+<i class="fa-solid fa-chevron-left"></i>
+</a>
+
+<a class="item" href="https://t.me/CEGOATS/1" target="_blank">
+<span><img class="tg-icon" src="https://cdn.simpleicons.org/telegram/229ED9">Moves CE</span>
+<i class="fa-solid fa-chevron-left"></i>
+</a>
+
+<a class="item" href="https://t.me/hawsib5" target="_blank">
+<span><img class="tg-icon" src="https://cdn.simpleicons.org/telegram/229ED9">قناة المستوى الخامس</span>
+<i class="fa-solid fa-chevron-left"></i>
+</a>
+
+<a class="item" href="https://t.me/hawsib_5" target="_blank">
+<span><img class="tg-icon" src="https://cdn.simpleicons.org/telegram/229ED9">مناقشة المستوى الخامس</span>
+<i class="fa-solid fa-chevron-left"></i>
+</a>
+
+</div>
+
+</details>
+
+
+
+<details>
+
+<summary>📚 المستوى السادس</summary>
+
+<div class="links">
+
+<a class="item" href="https://t.me/COC_6_moves" target="_blank">
+<span><img class="tg-icon" src="https://cdn.simpleicons.org/telegram/229ED9">Moves</span>
+<i class="fa-solid fa-chevron-left"></i>
+</a>
+
+<a class="item" href="https://t.me/hawsib6" target="_blank">
+<span><img class="tg-icon" src="https://cdn.simpleicons.org/telegram/229ED9">قناة المستوى السادس</span>
+<i class="fa-solid fa-chevron-left"></i>
+</a>
+
+<a class="item" href="https://t.me/hawsib_6" target="_blank">
+<span><img class="tg-icon" src="https://cdn.simpleicons.org/telegram/229ED9">مناقشة المستوى السادس</span>
+<i class="fa-solid fa-chevron-left"></i>
+</a>
+
+</div>
+
+</details>
+
+
+
+<details>
+
+<summary>📚 المستوى السابع</summary>
+
+<div class="links">
+
+<a class="item" href="https://t.me/COC_7_moves" target="_blank">
+<span><img class="tg-icon" src="https://cdn.simpleicons.org/telegram/229ED9">Moves</span>
+<i class="fa-solid fa-chevron-left"></i>
+</a>
+
+</div>
+
+</details>
+
+
+
+<details>
+
+<summary>📚 المستوى الثامن</summary>
+
+<div class="links">
+
+<a class="item" href="https://t.me/COC_8_moves" target="_blank">
+<span><img class="tg-icon" src="https://cdn.simpleicons.org/telegram/229ED9">Moves</span>
+<i class="fa-solid fa-chevron-left"></i>
+</a>
+
+</div>
+
+</details>
+
 </section>
- 
-<!-- المستوى الخامس -->
-<section class="glass">
-    <h2><i class="fa-solid fa-layer-group"></i> المستوى الخامس</h2>
 
-    <div class="links">
+<footer>
 
-        <a href="https://t.me/IT_5_moves" target="_blank" class="item">
-            <span><i class="fa-solid fa-bullhorn"></i> Moves IT</span>
-        </a>
+<span>Sherisherre</span>
 
-        <a href="https://t.me/Brightofcs5" target="_blank" class="item">
-            <span><i class="fa-solid fa-bullhorn"></i> Moves CS</span>
-        </a>
+<a href="https://t.me/Sherisherre" target="_blank">
 
-        <a href="https://t.me/CEGOATS/1" target="_blank" class="item">
-            <span><i class="fa-solid fa-bullhorn"></i> Moves CE</span>
-        </a>
+<i class="fa-brands fa-telegram"></i>
 
-        <a href="https://t.me/hawsib5" target="_blank" class="item">
-            <span><i class="fa-solid fa-bullhorn"></i> قناة المستوى الخامس</span>
-        </a>
-
-        <a href="https://t.me/hawsib_5" target="_blank" class="item">
-            <span><i class="fa-solid fa-users"></i> مناقشة المستوى الخامس</span>
-        </a>
-
-    </div>
-</section>
-
-<!-- المستوى السادس -->
-<section class="glass">
-    <h2><i class="fa-solid fa-layer-group"></i> المستوى السادس</h2>
-
-    <div class="links">
-
-        <a href="https://t.me/COC_6_moves" target="_blank" class="item">
-            <span><i class="fa-solid fa-bullhorn"></i> Moves</span>
-        </a>
-
-        <a href="https://t.me/hawsib6" target="_blank" class="item">
-            <span><i class="fa-solid fa-bullhorn"></i> قناة المستوى السادس</span>
-        </a>
-
-        <a href="https://t.me/hawsib_6" target="_blank" class="item">
-            <span><i class="fa-solid fa-users"></i> مناقشة المستوى السادس</span>
-        </a>
-
-    </div>
-</section>
-
-<!-- المستوى السابع -->
-<section class="glass">
-    <h2><i class="fa-solid fa-layer-group"></i> المستوى السابع</h2>
-
-    <div class="links">
-
-        <a href="https://t.me/COC_7_moves" target="_blank" class="item">
-            <span><i class="fa-solid fa-bullhorn"></i> Moves</span>
-        </a>
-
-    </div>
-</section>
-
-<!-- المستوى الثامن -->
-<section class="glass">
-    <h2><i class="fa-solid fa-layer-group"></i> المستوى الثامن</h2>
-
-    <div class="links">
-
-        <a href="https://t.me/COC_8_moves" target="_blank" class="item">
-            <span><i class="fa-solid fa-bullhorn"></i> Moves</span>
-        </a>
-
-    </div>
-</section>
-
-<footer class="footer">
-
-    <a href="https://t.me/Sherisherre" target="_blank">
-        <i class="fa-brands fa-telegram"></i>
-    </a>
-
-    <span>Sherisherre</span>
+</a>
 
 </footer>
 
 </div>
 
+</body>
+
+</html>
+  
