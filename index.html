@@ -4,15 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>دليل الحاسب</title>
-    <!-- Font Awesome للأيقونات -->
+    <!-- أيقونات Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary-blue: #00d2ff;
+            --primary-blue: #00a2ff; /* اللون الأزرق المطلوب */
             --bg-dark: #0d1117;
             --card-bg: #161b22;
             --text-color: #ffffff;
             --secondary-text: #8b949e;
+            --glow-blue: rgba(0, 162, 255, 0.4);
         }
 
         body {
@@ -22,7 +23,7 @@
             margin: 0;
             padding: 0;
             background-image: radial-gradient(var(--primary-blue) 0.5px, transparent 0.5px);
-            background-size: 30px 30px; /* خلفية النقاط */
+            background-size: 30px 30px; /* النقاط في الخلفية */
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -37,148 +38,171 @@
         }
 
         h1 {
-            font-size: 3rem;
+            font-size: 3.5rem;
             color: var(--primary-blue);
-            text-shadow: 0 0 15px rgba(0, 210, 255, 0.5);
+            text-shadow: 0 0 20px var(--glow-blue);
             margin-bottom: 10px;
         }
 
         .subtitle {
             color: var(--secondary-text);
             margin-bottom: 40px;
+            font-size: 1.1rem;
         }
 
-        /* نظام التبويبات الرئيسي */
+        /* التبويبات الرئيسية */
         .main-tabs {
             display: flex;
             justify-content: center;
-            gap: 20px;
-            margin-bottom: 30px;
+            gap: 30px;
+            margin-bottom: 40px;
+            border-bottom: 1px solid #30363d;
         }
 
         .tab-btn {
             background: none;
             border: none;
             color: var(--secondary-text);
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             cursor: pointer;
             padding: 10px 20px;
             transition: 0.3s;
-            border-bottom: 2px solid transparent;
+            position: relative;
         }
 
         .tab-btn.active {
             color: var(--primary-blue);
-            border-bottom: 2px solid var(--primary-blue);
         }
 
-        /* نظام تبويبات المستويات */
-        .levels-nav {
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary-blue);
+            box-shadow: 0 0 10px var(--primary-blue);
+        }
+
+        /* تبويبات المستويات الثمانية */
+        .levels-grid {
             display: none;
-            flex-wrap: wrap;
             justify-content: center;
+            flex-wrap: wrap;
             gap: 10px;
             margin-bottom: 30px;
         }
 
-        .level-btn {
+        .level-nav-btn {
             background: var(--card-bg);
             border: 1px solid #30363d;
             color: white;
-            padding: 8px 15px;
-            border-radius: 8px;
+            padding: 10px 20px;
+            border-radius: 10px;
             cursor: pointer;
             transition: 0.3s;
         }
 
-        .level-btn.active {
+        .level-nav-btn.active {
             background: var(--primary-blue);
-            color: black;
+            border-color: var(--primary-blue);
+            color: #000;
             font-weight: bold;
         }
 
-        /* البطاقات */
-        .content-section {
+        /* قسم المحتوى */
+        .content-area {
             display: none;
             justify-content: center;
+            animation: fadeIn 0.5s;
         }
 
-        .content-section.active {
-            display: flex;
-        }
+        .content-area.active { display: flex; }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
         .card {
             background-color: var(--card-bg);
             border: 1px solid #30363d;
-            border-radius: 20px;
+            border-radius: 25px;
             padding: 30px;
             width: 100%;
             max-width: 450px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
         }
 
-        .card-title {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
+        .card-header {
+            font-size: 2rem;
+            margin-bottom: 25px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 15px;
+            color: #fff;
         }
 
-        .group-header {
+        .section-label {
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
             color: var(--secondary-text);
-            margin: 15px 0 10px;
-            font-size: 0.9rem;
+            margin: 20px 0 10px;
+            font-size: 0.95rem;
         }
 
-        .link-button {
+        .link-item {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.04);
             color: white;
             text-decoration: none;
-            padding: 15px 25px;
-            margin: 10px 0;
+            padding: 18px 25px;
+            margin: 12px 0;
             border-radius: 50px;
             transition: 0.3s;
             border: 1px solid transparent;
         }
 
-        .link-button:hover {
-            background: rgba(0, 210, 255, 0.1);
+        .link-item:hover {
+            background: rgba(0, 162, 255, 0.1);
             border-color: var(--primary-blue);
+            transform: translateY(-2px);
         }
+
+        .link-item i { font-size: 1.2rem; }
 
         /* الفوتر */
         footer {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 40px;
-            background: rgba(0,0,0,0.3);
+            padding: 30px 50px;
+            background: rgba(0,0,0,0.4);
             margin-top: 50px;
+            border-top: 1px solid #30363d;
         }
 
-        .footer-left a {
+        .footer-tg a {
             color: var(--primary-blue);
-            font-size: 1.5rem;
+            font-size: 2rem;
             text-decoration: none;
+            transition: 0.3s;
         }
 
-        .footer-right {
+        .footer-tg a:hover { transform: scale(1.1); }
+
+        .footer-name {
+            font-size: 1.2rem;
             font-weight: bold;
             color: var(--secondary-text);
         }
 
         @media (max-width: 600px) {
-            h1 { font-size: 2rem; }
-            .main-tabs { flex-direction: row; }
+            h1 { font-size: 2.2rem; }
+            footer { padding: 20px; }
         }
     </style>
 </head>
@@ -188,49 +212,49 @@
         <h1>دليل الحاسب</h1>
         <p class="subtitle">وصول سريع ومنظم لجميع روابط القنوات والمبادرات الطلابية</p>
 
-        <!-- التبويبات الرئيسية -->
+        <!-- التبويبات العلوية -->
         <div class="main-tabs">
-            <button class="tab-btn active" onclick="showTab('college')">الكلية</button>
-            <button class="tab-btn" onclick="showTab('levels')">المستويات</button>
+            <button class="tab-btn active" onclick="switchMainTab('college')">الكلية</button>
+            <button class="tab-btn" onclick="switchMainTab('levels')">المستويات</button>
         </div>
 
-        <!-- أرقام المستويات (تظهر فقط عند الضغط على المستويات) -->
-        <div id="levels-nav" class="levels-nav">
-            <button class="level-btn active" onclick="showLevel(1)">الأول</button>
-            <button class="level-btn" onclick="showLevel(2)">الثاني</button>
-            <button class="level-btn" onclick="showLevel(3)">الثالث</button>
-            <button class="level-btn" onclick="showLevel(4)">الرابع</button>
-            <button class="level-btn" onclick="showLevel(5)">الخامس</button>
-            <button class="level-btn" onclick="showLevel(6)">السادس</button>
-            <button class="level-btn" onclick="showLevel(7)">السابع</button>
-            <button class="level-btn" onclick="showLevel(8)">الثامن</button>
+        <!-- تبويبات المستويات (تظهر عند اختيار المستويات) -->
+        <div id="levels-nav" class="levels-grid">
+            <button class="level-nav-btn active" onclick="showLevel(1)">الأول</button>
+            <button class="level-nav-btn" onclick="showLevel(2)">الثاني</button>
+            <button class="level-nav-btn" onclick="showLevel(3)">الثالث</button>
+            <button class="level-nav-btn" onclick="showLevel(4)">الرابع</button>
+            <button class="level-nav-btn" onclick="showLevel(5)">الخامس</button>
+            <button class="level-nav-btn" onclick="showLevel(6)">السادس</button>
+            <button class="level-nav-btn" onclick="showLevel(7)">السابع</button>
+            <button class="level-nav-btn" onclick="showLevel(8)">الثامن</button>
         </div>
 
         <!-- محتوى الكلية -->
-        <div id="college-content" class="content-section active">
+        <div id="college-section" class="content-area active">
             <div class="card">
-                <div class="card-title">
-                    <i class="fas fa-users" style="color: var(--primary-blue);"></i>
+                <div class="card-header">
+                    <i class="fas fa-university" style="color: var(--primary-blue);"></i>
                     قروبات كلية الحاسب
                 </div>
                 
-                <a href="https://t.me/qassimuniversityc" target="_blank" class="link-button">
+                <a href="https://t.me/qassimuniversityc" target="_blank" class="link-item">
                     <span>قناة كلية الحاسب</span>
                     <i class="fas fa-bullhorn"></i>
                 </a>
-                <a href="https://t.me/qassimuniversityIT" target="_blank" class="link-button">
+                <a href="https://t.me/qassimuniversityIT" target="_blank" class="link-item">
                     <span>مناقشة كلية الحاسب</span>
                     <i class="fas fa-comments"></i>
                 </a>
 
-                <div class="group-header">
-                    <i class="fas fa-users-items"></i> حوسب
+                <div class="section-label">
+                    <i class="fas fa-users"></i> حوسب
                 </div>
-                <a href="https://t.me/COC_QU_channel" target="_blank" class="link-button">
+                <a href="https://t.me/COC_QU_channel" target="_blank" class="link-item">
                     <span>قناة حوسب</span>
                     <i class="fas fa-bullhorn"></i>
                 </a>
-                <a href="https://t.me/COC_QU" target="_blank" class="link-button">
+                <a href="https://t.me/COC_QU" target="_blank" class="link-item">
                     <span>مناقشة حوسب</span>
                     <i class="fas fa-comments"></i>
                 </a>
@@ -238,21 +262,18 @@
         </div>
 
         <!-- محتوى المستويات -->
-        <div id="levels-content" class="content-section">
-            <!-- سيتم تبديل المحتوى هنا بواسطة JS -->
-            <div id="level-display" class="card">
-                <!-- المحتوى المتغير يوضع هنا -->
+        <div id="levels-section" class="content-area">
+            <div id="level-card-container" class="card">
+                <!-- المحتوى يتم توليده برمجياً هنا -->
             </div>
         </div>
     </div>
 
     <footer>
-        <div class="footer-left">
+        <div class="footer-tg">
             <a href="https://t.me/Sherisherre" target="_blank"><i class="fab fa-telegram"></i></a>
         </div>
-        <div class="footer-right">
-            Sherisherre
-        </div>
+        <div class="footer-name">Sherisherre</div>
     </footer>
 
     <script>
@@ -278,7 +299,7 @@
             4: {
                 title: "المستوى الرابع",
                 mustadeem: "https://t.me/addlist/ED-1PugxTU42NjE8",
-                hawsibChannel: "https://t.me/hawsib3", // كما ورد في طلبك
+                hawsibChannel: "https://t.me/hawsib3",
                 hawsibChat: "https://t.me/hawsib4"
             },
             5: {
@@ -313,46 +334,50 @@
             }
         };
 
-        function showTab(tab) {
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-            document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
-            
+        function switchMainTab(tab) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.content-area').forEach(sec => sec.classList.remove('active'));
+            document.getElementById('levels-nav').style.display = 'none';
+
             if(tab === 'college') {
-                document.getElementById('college-content').classList.add('active');
-                document.getElementById('levels-nav').style.display = 'none';
+                document.getElementById('college-section').classList.add('active');
                 event.target.classList.add('active');
             } else {
-                document.getElementById('levels-content').classList.add('active');
+                document.getElementById('levels-section').classList.add('active');
                 document.getElementById('levels-nav').style.display = 'flex';
                 event.target.classList.add('active');
-                showLevel(1); // افتراضياً المستوى الأول
+                showLevel(1); 
             }
         }
 
         function showLevel(num) {
-            document.querySelectorAll('.level-btn').forEach(b => b.classList.remove('active'));
-            event.target.classList.add('active');
-            
+            document.querySelectorAll('.level-nav-btn').forEach(btn => btn.classList.remove('active'));
+            // تحديد الزر المناسب عند الضغط
+            const buttons = document.querySelectorAll('.level-nav-btn');
+            buttons[num-1].classList.add('active');
+
             const data = levelsData[num];
-            let html = `<div class="card-title"><i class="fas fa-layer-group" style="color: var(--primary-blue);"></i> ${data.title}</div>`;
-            
+            let content = `<div class="card-header"><i class="fas fa-layer-group" style="color: var(--primary-blue);"></i> ${data.title}</div>`;
+
+            // إضافة قنوات مستديم أو Moves
             if (data.isMoves) {
-                html += `<div class="group-header"><i class="fas fa-link"></i> Moves</div>`;
+                content += `<div class="section-label"><i class="fas fa-link"></i> Moves</div>`;
                 data.moves.forEach(m => {
-                    html += `<a href="${m.link}" target="_blank" class="link-button"><span>${m.name}</span><i class="fas fa-link"></i></a>`;
+                    content += `<a href="${m.link}" target="_blank" class="link-item"><span>${m.name}</span><i class="fas fa-link"></i></a>`;
                 });
             } else {
-                html += `<div class="group-header"><i class="fas fa-link"></i> قنوات مستديم</div>`;
-                html += `<a href="${data.mustadeem}" target="_blank" class="link-button"><span>مستديم</span><i class="fas fa-star"></i></a>`;
+                content += `<div class="section-label"><i class="fas fa-link"></i> قنوات مستديم</div>`;
+                content += `<a href="${data.mustadeem}" target="_blank" class="link-item"><span>مستديم</span><i class="fas fa-star"></i></a>`;
             }
 
+            // إضافة قنوات حوسب (إلا في حال كان المستوى يحتوي Moves فقط)
             if (!data.onlyMoves) {
-                html += `<div class="group-header"><i class="fas fa-users-items"></i> حوسب</div>`;
-                html += `<a href="${data.hawsibChannel}" target="_blank" class="link-button"><span>قناة المستوى ${data.title.split(' ')[1]}</span><i class="fas fa-bullhorn"></i></a>`;
-                html += `<a href="${data.hawsibChat}" target="_blank" class="link-button"><span>مناقشة المستوى ${data.title.split(' ')[1]}</span><i class="fas fa-comments"></i></a>`;
+                content += `<div class="section-label"><i class="fas fa-users"></i> حوسب</div>`;
+                content += `<a href="${data.hawsibChannel}" target="_blank" class="link-item"><span>قناة المستوى ${data.title.split(' ')[1]}</span><i class="fas fa-bullhorn"></i></a>`;
+                content += `<a href="${data.hawsibChat}" target="_blank" class="link-item"><span>مناقشة المستوى ${data.title.split(' ')[1]}</span><i class="fas fa-comments"></i></a>`;
             }
 
-            document.getElementById('level-display').innerHTML = html;
+            document.getElementById('level-card-container').innerHTML = content;
         }
     </script>
 </body>
