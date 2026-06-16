@@ -4,35 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>دليل الحاسب</title>
+    <!-- استيراد خط Cairo الحديث من جوجل -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
     <!-- Font Awesome للأيقونات -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
         :root {
-            /* الألوان الافتراضية (الوضع الليلي) */
             --bg-body: #0d1117;
             --bg-card: #161b22;
             --text-main: #ffffff;
             --text-sec: #8b949e;
-            --primary-blue: #00a2ff;
-            --glow: rgba(0, 162, 255, 0.5);
+            --primary-blue: #33ffd8; /* لون التركواز المضيء من الصورة */
+            --glow: rgba(51, 255, 216, 0.6);
             --border: #30363d;
             --btn-bg: rgba(255, 255, 255, 0.05);
         }
 
         [data-theme="light"] {
-            /* الألوان للوضع النهاري */
             --bg-body: #f0f2f5;
             --bg-card: #ffffff;
             --text-main: #1c1e21;
             --text-sec: #606770;
             --primary-blue: #007bff;
-            --glow: rgba(0, 123, 255, 0.2);
+            --glow: rgba(0, 123, 255, 0.3);
             --border: #ddd;
             --btn-bg: #f5f6f7;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, sans-serif;
+            /* تطبيق الخط الجديد هنا */
+            font-family: 'Cairo', sans-serif;
             background-color: var(--bg-body);
             color: var(--text-main);
             margin: 0; padding: 0;
@@ -46,6 +48,7 @@
         .settings-icon {
             position: absolute; top: 20px; left: 20px;
             font-size: 1.5rem; cursor: pointer; color: var(--primary-blue);
+            z-index: 100;
         }
 
         .container {
@@ -53,86 +56,107 @@
             text-align: center; flex: 1;
         }
 
+        /* تنسيق العنوان بنفس التوهج والخط العريض */
         h1 {
-            font-size: 3rem; color: var(--primary-blue);
-            text-shadow: 0 0 15px var(--glow); margin-bottom: 30px;
+            font-weight: 900; /* عريض جداً مثل الصورة */
+            font-size: 3.5rem;
+            color: var(--primary-blue);
+            /* تأثير التوهج المضيء */
+            text-shadow: 0 0 10px var(--glow), 0 0 20px var(--glow);
+            margin-bottom: 30px;
+            letter-spacing: -1px;
         }
 
-        /* التبويبات الرئيسية */
+        .subtitle {
+            color: var(--text-sec);
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+        }
+
+        /* التبويبات */
         .tabs-nav {
             display: flex; justify-content: center; gap: 40px;
-            margin-bottom: 30px; border-bottom: 1px solid var(--border);
+            margin-bottom: 30px;
         }
         .tab-link {
             padding: 10px 20px; cursor: pointer; font-size: 1.2rem;
             color: var(--text-sec); border-bottom: 3px solid transparent;
+            font-weight: 700;
+            transition: 0.3s;
         }
         .tab-link.active {
             color: var(--primary-blue); border-color: var(--primary-blue);
         }
 
-        /* شبكة أزرار المستويات */
+        /* شبكة المستويات */
         .levels-grid {
             display: none; grid-template-columns: repeat(4, 1fr); gap: 10px;
             margin-bottom: 30px;
         }
         .level-btn {
             background: var(--bg-card); border: 1px solid var(--border);
-            color: var(--text-main); padding: 12px; border-radius: 8px;
-            cursor: pointer; transition: 0.2s;
+            color: var(--text-main); padding: 12px; border-radius: 12px;
+            cursor: pointer; transition: 0.2s; font-family: 'Cairo';
+            font-weight: 600;
         }
         .level-btn.active {
-            background: var(--primary-blue); color: #fff; box-shadow: 0 0 10px var(--glow);
+            background: var(--primary-blue); color: #000; font-weight: 900;
         }
 
-        /* المحتوى */
+        /* البطاقة والمحتوى */
         .card {
             background: var(--bg-card); border: 1px solid var(--border);
-            border-radius: 20px; padding: 25px; margin-top: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            border-radius: 25px; padding: 30px; margin-top: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
         }
 
         .section-header {
-            color: var(--text-sec); margin: 20px 0 10px; font-size: 0.9rem;
-            display: flex; align-items: center; justify-content: center; gap: 8px;
+            color: var(--text-sec); margin: 25px 0 15px; font-size: 0.95rem;
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+            font-weight: 700;
         }
 
         .link-item {
             display: flex; align-items: center; justify-content: space-between;
             background: var(--btn-bg); color: var(--text-main);
-            text-decoration: none; padding: 15px 25px; margin: 10px 0;
+            text-decoration: none; padding: 18px 25px; margin: 12px 0;
             border-radius: 50px; border: 1px solid transparent; transition: 0.3s;
+            font-weight: 600;
         }
-        .link-item:hover { border-color: var(--primary-blue); background: var(--glow); }
+        .link-item:hover { 
+            border-color: var(--primary-blue); 
+            background: rgba(51, 255, 216, 0.08);
+            transform: translateY(-2px);
+        }
 
         /* الفوتر */
         footer {
             display: flex; justify-content: space-between; align-items: center;
-            padding: 20px 40px; border-top: 1px solid var(--border); margin-top: 40px;
+            padding: 30px 50px; border-top: 1px solid var(--border); margin-top: 40px;
         }
-        .footer-right { font-weight: bold; color: var(--text-sec); }
-        .footer-left a { color: var(--primary-blue); font-size: 1.8rem; }
+        .footer-right { font-weight: 800; color: var(--text-sec); font-size: 1.1rem; }
+        .footer-left a { color: var(--primary-blue); font-size: 2rem; transition: 0.3s; }
+        .footer-left a:hover { transform: scale(1.2); }
 
         @media (max-width: 600px) {
             .levels-grid { grid-template-columns: repeat(2, 1fr); }
-            h1 { font-size: 2rem; }
+            h1 { font-size: 2.5rem; }
         }
     </style>
 </head>
 <body>
 
-    <i class="fas fa-cog settings-icon" onclick="toggleTheme()"></i>
+    <i class="fas fa-cog settings-icon" title="تغيير الوضع" onclick="toggleTheme()"></i>
 
     <div class="container">
         <h1>دليل الحاسب</h1>
+        <p class="subtitle">وصول سريع ومنظم لجميع روابط القنوات والمبادرات الطلابية</p>
 
-        <!-- تبويب الكلية والمستويات -->
         <div class="tabs-nav">
             <div class="tab-link active" onclick="switchTab('college')">الكلية</div>
             <div class="tab-link" onclick="switchTab('levels')">المستويات</div>
         </div>
 
-        <!-- أزرار المستويات -->
         <div id="levels-grid" class="levels-grid">
             <button class="level-btn" onclick="loadLevel(1)">الأول</button>
             <button class="level-btn" onclick="loadLevel(2)">الثاني</button>
@@ -144,9 +168,8 @@
             <button class="level-btn" onclick="loadLevel(8)">الثامن</button>
         </div>
 
-        <!-- منطقة المحتوى الديناميكي -->
         <div id="content-display" class="card">
-            <!-- المحتوى الافتراضي (الكلية) -->
+            <!-- المحتوى الافتراضي للكلية -->
             <div class="section-header"><i class="fas fa-university"></i> قروبات كلية الحاسب</div>
             <a href="https://t.me/qassimuniversityc" target="_blank" class="link-item"><span>قناة كلية الحاسب</span><i class="fas fa-bullhorn"></i></a>
             <a href="https://t.me/qassimuniversityIT" target="_blank" class="link-item"><span>مناقشة كلية الحاسب</span><i class="fas fa-comments"></i></a>
@@ -165,51 +188,30 @@
     </footer>
 
     <script>
-        // بيانات المستويات كاملة
         const levels = {
-            1: {
-                mustadeem: "https://t.me/addlist/LH-wE8fs_4ExNjE0",
-                hChannel: "https://t.me/hawsib1", hChat: "https://t.me/hawsib_1"
+            1: { m: "https://t.me/addlist/LH-wE8fs_4ExNjE0", c: "https://t.me/hawsib1", d: "https://t.me/hawsib_1" },
+            2: { m: "https://t.me/addlist/UZHn4fPZTvI4ODBk", c: "https://t.me/hawsib2", d: "https://t.me/hawsib2" },
+            3: { m: "https://t.me/addlist/WY-nb6Wz4EtkYjZk", c: "https://t.me/hawsib3", d: "https://t.me/hawsib_3" },
+            4: { m: "https://t.me/addlist/ED-1PugxTU42NjE8", c: "https://t.me/hawsib3", d: "https://t.me/hawsib4" },
+            5: { 
+                moves: [{t: "IT", l: "https://t.me/IT_5_moves"}, {t: "CS", l: "https://t.me/Brightofcs5"}, {t: "CE", l: "https://t.me/CEGOATS/1"}],
+                c: "https://t.me/hawsib5", d: "https://t.me/hawsib_5"
             },
-            2: {
-                mustadeem: "https://t.me/addlist/UZHn4fPZTvI4ODBk",
-                hChannel: "https://t.me/hawsib2", hChat: "https://t.me/hawsib2"
-            },
-            3: {
-                mustadeem: "https://t.me/addlist/WY-nb6Wz4EtkYjZk",
-                hChannel: "https://t.me/hawsib3", hChat: "https://t.me/hawsib_3"
-            },
-            4: {
-                mustadeem: "https://t.me/addlist/ED-1PugxTU42NjE8",
-                hChannel: "https://t.me/hawsib3", hChat: "https://t.me/hawsib4"
-            },
-            5: {
-                moves: [
-                    {t: "Moves IT", l: "https://t.me/IT_5_moves"},
-                    {t: "Moves CS", l: "https://t.me/Brightofcs5"},
-                    {t: "Moves CE", l: "https://t.me/CEGOATS/1"}
-                ],
-                hChannel: "https://t.me/hawsib5", hChat: "https://t.me/hawsib_5"
-            },
-            6: {
-                moves: [{t: "Moves جميع التخصصات", l: "https://t.me/COC_6_moves"}],
-                hChannel: "https://t.me/hawsib6", hChat: "https://t.me/hawsib_6"
-            },
-            7: { moves: [{t: "Moves جميع التخصصات", l: "https://t.me/COC_7_moves"}] },
-            8: { moves: [{t: "Moves جميع التخصصات", l: "https://t.me/COC_8_moves"}] }
+            6: { moves: [{t: " جميع التخصصات", l: "https://t.me/COC_6_moves"}], c: "https://t.me/hawsib6", d: "https://t.me/hawsib_6" },
+            7: { moves: [{t: " جميع التخصصات", l: "https://t.me/COC_7_moves"}] },
+            8: { moves: [{t: " جميع التخصصات", l: "https://t.me/COC_8_moves"}] }
         };
 
         function switchTab(type) {
             const tabs = document.querySelectorAll('.tab-link');
             const grid = document.getElementById('levels-grid');
             const display = document.getElementById('content-display');
-
             tabs.forEach(t => t.classList.remove('active'));
             event.target.classList.add('active');
 
             if (type === 'levels') {
                 grid.style.display = 'grid';
-                loadLevel(1); // تحميل المستوى الأول تلقائياً
+                loadLevel(1);
             } else {
                 grid.style.display = 'none';
                 display.innerHTML = `
@@ -218,43 +220,37 @@
                     <a href="https://t.me/qassimuniversityIT" target="_blank" class="link-item"><span>مناقشة كلية الحاسب</span><i class="fas fa-comments"></i></a>
                     <div class="section-header"><i class="fas fa-users"></i> حوسب</div>
                     <a href="https://t.me/COC_QU_channel" target="_blank" class="link-item"><span>قناة حوسب</span><i class="fas fa-bullhorn"></i></a>
-                    <a href="https://t.me/COC_QU" target="_blank" class="link-item"><span>مناقشة حوسب</span><i class="fas fa-comments"></i></a>
-                `;
+                    <a href="https://t.me/COC_QU" target="_blank" class="link-item"><span>مناقشة حوسب</span><i class="fas fa-comments"></i></a>`;
             }
         }
 
         function loadLevel(n) {
             document.querySelectorAll('.level-btn').forEach(b => b.classList.remove('active'));
-            event.target?.classList.add('active');
-
+            if(event.target.tagName === 'BUTTON') event.target.classList.add('active');
+            
             const data = levels[n];
-            let html = `<h3>المستوى ${event.target?.innerText || 'الأول'}</h3>`;
+            const name = ["الأول","الثاني","الثالث","الرابع","الخامس","السادس","السابع","الثامن"][n-1];
+            let html = `<h2 style="color:var(--primary-blue)">المستوى ${name}</h2>`;
 
-            if (data.mustadeem) {
+            if (data.m) {
                 html += `<div class="section-header"><i class="fas fa-link"></i> قنوات مستديم</div>
-                         <a href="${data.mustadeem}" target="_blank" class="link-item"><span>مستديم</span><i class="fas fa-star"></i></a>`;
+                         <a href="${data.m}" target="_blank" class="link-item"><span>مستديم</span><i class="fas fa-star"></i></a>`;
             }
-
             if (data.moves) {
                 html += `<div class="section-header"><i class="fas fa-link"></i> Moves</div>`;
-                data.moves.forEach(m => {
-                    html += `<a href="${m.l}" target="_blank" class="link-item"><span>${m.t}</span><i class="fas fa-link"></i></a>`;
-                });
+                data.moves.forEach(m => html += `<a href="${m.l}" target="_blank" class="link-item"><span>${m.t}</span><i class="fas fa-link"></i></a>`);
             }
-
-            if (data.hChannel) {
+            if (data.c) {
                 html += `<div class="section-header"><i class="fas fa-users"></i> حوسب</div>
-                         <a href="${data.hChannel}" target="_blank" class="link-item"><span>قناة المستوى</span><i class="fas fa-bullhorn"></i></a>
-                         <a href="${data.hChat}" target="_blank" class="link-item"><span>مناقشة المستوى</span><i class="fas fa-comments"></i></a>`;
+                         <a href="${data.c}" target="_blank" class="link-item"><span>قناة المستوى</span><i class="fas fa-bullhorn"></i></a>
+                         <a href="${data.d}" target="_blank" class="link-item"><span>مناقشة المستوى</span><i class="fas fa-comments"></i></a>`;
             }
-
             document.getElementById('content-display').innerHTML = html;
         }
 
         function toggleTheme() {
             const body = document.body;
-            const currentTheme = body.getAttribute('data-theme');
-            body.setAttribute('data-theme', currentTheme === 'light' ? 'dark' : 'light');
+            body.setAttribute('data-theme', body.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
         }
     </script>
 </body>
