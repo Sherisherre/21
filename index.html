@@ -4,21 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>دليل الحاسب</title>
+    <!-- استدعاء الخط والأيقونات -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* تعريف المتغيرات للألوان - تتغير بناءً على الإعدادات */
         :root {
             --bg-color: #f4f7f6;
             --card-bg: #ffffff;
             --text-color: #333333;
-            --primary-color: #27ae60; /* اللون الافتراضي (أخضر) */
+            --primary-color: #27ae60; 
             --header-bg: #2c3e50;
             --shadow: rgba(0,0,0,0.1);
         }
 
-        /* تنسيق الوضع المظلم */
         [data-theme="dark"] {
             --bg-color: #121212;
             --card-bg: #1e1e1e;
@@ -32,91 +31,105 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             margin: 0; padding: 0;
-            transition: all 0.3s ease;
+            transition: background 0.3s, color 0.3s;
         }
 
-        /* الهيدر */
+        /* تنسيق الهيدر وزر الإعدادات */
         .header {
             background-color: var(--header-bg);
             color: white;
             text-align: center;
-            padding: 20px 0;
+            padding: 25px 0;
             position: relative;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
         }
 
-        /* زر الإعدادات */
         .settings-btn {
             position: absolute;
-            left: 20px;
+            right: 20px; /* جهة اليمين */
             top: 50%;
             transform: translateY(-50%);
-            font-size: 24px;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             cursor: pointer;
+            z-index: 999;
+            transition: 0.3s;
+        }
+
+        .settings-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .settings-btn i {
+            font-size: 20px;
             color: white;
         }
 
         .container { max-width: 600px; margin: 20px auto; padding: 10px; }
 
-        /* التبويبات والروابط */
+        /* التبويبات */
         details {
             background: var(--card-bg);
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             border-radius: 12px;
             box-shadow: 0 4px 6px var(--shadow);
-            overflow: hidden;
+            border: 1px solid rgba(0,0,0,0.05);
         }
 
         summary {
-            padding: 15px; font-weight: bold; cursor: pointer; list-style: none;
+            padding: 18px; font-weight: bold; cursor: pointer; list-style: none;
             display: flex; justify-content: space-between; align-items: center;
         }
 
-        summary::after { content: '\f107'; font-family: 'Font Awesome 6 Free'; font-weight: 900; }
+        summary::after { content: '\f107'; font-family: 'Font Awesome 6 Free'; font-weight: 900; transition: 0.3s; }
+        details[open] summary::after { transform: rotate(180deg); }
+
+        .content { padding: 10px 15px 20px; }
 
         .link-card {
             display: flex; align-items: center; text-decoration: none;
-            color: var(--text-color); padding: 12px; margin-bottom: 8px;
-            background: var(--bg-color); border-radius: 8px; transition: 0.3s;
+            color: var(--text-color); padding: 14px; margin-bottom: 10px;
+            background: var(--bg-color); border-radius: 10px; transition: 0.3s;
+            border: 1px solid rgba(0,0,0,0.05);
         }
         
-        .link-card i { margin-left: 15px; color: var(--primary-color); font-size: 1.2rem; }
-        .section-title { border-right: 4px solid var(--primary-color); padding-right: 10px; margin: 15px 0; }
+        .link-card i { margin-left: 15px; color: var(--primary-color); font-size: 1.3rem; }
+        .section-title { border-right: 4px solid var(--primary-color); padding-right: 10px; margin: 20px 0 10px; font-size: 1.1rem; }
 
-        /* نافذة الإعدادات المنبثقة (مثل الصورة) */
+        /* نافذة الإعدادات (Modal) */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.7); display: none; justify-content: center; align-items: center;
-            z-index: 1000;
+            background: rgba(0,0,0,0.8); display: none; justify-content: center; align-items: center;
+            z-index: 2000;
         }
 
         .settings-modal {
-            background: #1a1a1a; color: white; width: 90%; max-width: 400px;
-            padding: 25px; border-radius: 20px; position: relative;
+            background: #1a1a1a; color: white; width: 85%; max-width: 350px;
+            padding: 25px; border-radius: 25px; position: relative; animation: fadeIn 0.3s;
         }
 
-        .close-modal { position: absolute; right: 20px; top: 20px; cursor: pointer; font-size: 20px; }
+        @keyframes fadeIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
 
-        .settings-row {
-            display: flex; justify-content: space-between; align-items: center; margin: 25px 0;
-        }
+        .close-modal { position: absolute; left: 20px; top: 20px; cursor: pointer; font-size: 22px; color: #666; }
 
-        /* أزرار الوضع (نهار/ظلام) */
-        .mode-switch {
-            background: #333; border-radius: 25px; display: flex; padding: 5px;
-        }
-        .mode-switch div {
-            padding: 5px 20px; border-radius: 20px; cursor: pointer; font-size: 14px;
-        }
-        .active-mode { background: #27ae60; color: white; }
+        .settings-row { display: flex; justify-content: space-between; align-items: center; margin: 25px 0; }
 
-        /* دوائر الألوان */
-        .color-options { display: flex; gap: 10px; }
-        .color-dot { width: 25px; height: 25px; border-radius: 50%; cursor: pointer; border: 2px solid transparent; }
-        .color-dot.active { border-color: white; }
+        .mode-switch { background: #333; border-radius: 30px; display: flex; padding: 4px; }
+        .mode-switch div { padding: 6px 18px; border-radius: 25px; cursor: pointer; font-size: 14px; transition: 0.3s; }
+        .active-mode { background: var(--primary-color); color: white; }
+
+        .color-options { display: flex; gap: 12px; }
+        .color-dot { width: 28px; height: 28px; border-radius: 50%; cursor: pointer; border: 2px solid transparent; transition: 0.2s; }
+        .color-dot.active { border-color: white; transform: scale(1.1); }
 
         /* التذييل */
         .footer {
-            margin-top: 40px; padding: 20px; display: flex;
+            margin-top: 50px; padding: 20px; display: flex;
             justify-content: space-between; align-items: center;
             background: var(--card-bg); border-top: 1px solid var(--shadow);
         }
@@ -125,18 +138,21 @@
 <body>
 
     <div class="header">
-        <i class="fa-solid fa-gear settings-btn" onclick="toggleSettings()"></i>
-        <h1>دليل الحاسب</h1>
+        <!-- زر الإعدادات -->
+        <div class="settings-btn" onclick="toggleSettings()">
+            <i class="fa-solid fa-sliders"></i>
+        </div>
+        <h1 style="margin:0; font-size: 1.5rem;">دليل الحاسب</h1>
     </div>
 
-    <!-- نافذة الإعدادات -->
-    <div class="modal-overlay" id="settingsModal">
-        <div class="settings-modal">
+    <!-- نافذة الإعدادات المنبثقة -->
+    <div class="modal-overlay" id="settingsModal" onclick="closeModal(event)">
+        <div class="settings-modal" onclick="event.stopPropagation()">
             <i class="fa-solid fa-xmark close-modal" onclick="toggleSettings()"></i>
-            <h2 style="text-align: center; margin-top: 0;">الإعدادات</h2>
+            <h3 style="text-align: center; margin-bottom: 25px;">الإعدادات</h3>
             
-            <p style="color: #27ae60; font-weight: bold; margin-bottom: 5px;">مظهر التطبيق</p>
-            <hr style="border: 0.5px solid #333;">
+            <p style="color: var(--primary-color); font-weight: bold; font-size: 0.9rem;">مظهر التطبيق</p>
+            <hr style="border: 0.1px solid #333; opacity: 0.5;">
 
             <div class="settings-row">
                 <span>الوضع</span>
@@ -152,80 +168,79 @@
                     <div class="color-dot" style="background: #27ae60;" onclick="setAccent('#27ae60')"></div>
                     <div class="color-dot" style="background: #3498db;" onclick="setAccent('#3498db')"></div>
                     <div class="color-dot" style="background: #9b59b6;" onclick="setAccent('#9b59b6')"></div>
-                    <div class="color-dot" style="background: #e74c3c;" onclick="setAccent('#e74c3c')"></div>
+                    <div class="color-dot" style="background: #f1c40f;" onclick="setAccent('#f1c40f')"></div>
                 </div>
             </div>
         </div>
     </div>
 
     <div class="container">
-        <!-- تبويب الكلية -->
+        <!-- قسم الكلية -->
         <details>
             <summary>الكلية</summary>
-            <div style="padding: 15px;">
+            <div class="content">
                 <h3 class="section-title">قروبات كلية الحاسب</h3>
                 <a href="https://t.me/qassimuniversityc" class="link-card"><i class="fa-brands fa-telegram"></i> قناة كلية الحاسب</a>
                 <a href="https://t.me/qassimuniversityIT" class="link-card"><i class="fa-regular fa-comments"></i> مناقشة كلية الحاسب</a>
                 <a href="https://t.me/COC_QU_channel" class="link-card"><i class="fa-brands fa-telegram"></i> قناة حوسب</a>
                 <a href="https://t.me/COC_QU" class="link-card"><i class="fa-regular fa-comments"></i> مناقشة حوسب</a>
-                <a href="https://t.me/hawsib_Support_Bot" class="link-card"><i class="fa-solid fa-robot"></i> طالبات حوسب (بوت الدعم)</a>
+                <a href="https://t.me/hawsib_Support_Bot" class="link-card"><i class="fa-solid fa-robot"></i> مجموعة طالبات حوسب</a>
             </div>
         </details>
 
-        <!-- تبويب المستويات (مثال لثلاث مستويات لعدم الإطالة) -->
+        <!-- قسم المستويات -->
         <details>
             <summary>المستويات</summary>
-            <div style="padding: 10px;">
-                <details>
-                    <summary>المستوى الأول</summary>
-                    <div style="padding: 10px;">
-                        <a href="https://t.me/addlist/LH-wE8fs_4ExNjE0" class="link-card" style="background: var(--primary-color); color: white;">قنوات مستديم</a>
-                        <a href="https://t.me/hawsib1" class="link-card"><i class="fa-brands fa-telegram"></i> قناة حوسب 1</a>
-                    </div>
-                </details>
-                <!-- كرر نفس التنسيق للبقية -->
+            <div class="content">
+                <p style="text-align:center; color: #888;">أضف روابط المستويات هنا بنفس الطريقة...</p>
             </div>
         </details>
     </div>
 
     <div class="footer">
         <div style="font-weight: bold;">Sherisherre</div>
-        <a href="https://t.me/Sherisherre" style="color: #0088cc; font-size: 24px;"><i class="fa-brands fa-telegram"></i></a>
+        <a href="https://t.me/Sherisherre" style="color: #0088cc; font-size: 26px;"><i class="fa-brands fa-telegram"></i></a>
     </div>
 
     <script>
-        // فتح وإغلاق النافذة
         function toggleSettings() {
             const modal = document.getElementById('settingsModal');
-            modal.style.display = (modal.style.display === 'flex') ? 'none' : 'flex';
+            const isVisible = modal.style.display === 'flex';
+            modal.style.display = isVisible ? 'none' : 'flex';
         }
 
-        // تغيير الثيم (فاتح / مظلم)
+        function closeModal(e) {
+            if(e.target.id === 'settingsModal') toggleSettings();
+        }
+
         function setTheme(theme) {
             document.documentElement.setAttribute('data-theme', theme);
-            localStorage.setItem('theme', theme);
-            updateThemeButtons(theme);
+            localStorage.setItem('user-theme', theme);
+            updateThemeUI(theme);
         }
 
-        function updateThemeButtons(theme) {
+        function updateThemeUI(theme) {
             document.getElementById('lightBtn').classList.toggle('active-mode', theme === 'light');
             document.getElementById('darkBtn').classList.toggle('active-mode', theme === 'dark');
         }
 
-        // تغيير لون السمة
         function setAccent(color) {
             document.documentElement.style.setProperty('--primary-color', color);
-            localStorage.setItem('accentColor', color);
+            localStorage.setItem('user-accent', color);
+            
+            // تمييز الدائرة المختارة
+            document.querySelectorAll('.color-dot').forEach(dot => {
+                dot.classList.toggle('active', dot.style.backgroundColor === color);
+            });
         }
 
-        // تحميل الإعدادات المحفوظة عند فتح الصفحة
-        window.onload = () => {
-            const savedTheme = localStorage.getItem('theme') || 'light';
-            const savedAccent = localStorage.getItem('accentColor') || '#27ae60';
-            
+        // تشغيل الإعدادات المحفوظة عند التحميل
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('user-theme') || 'light';
+            const savedAccent = localStorage.getItem('user-accent') || '#27ae60';
             setTheme(savedTheme);
             setAccent(savedAccent);
-        };
+        });
     </script>
 </body>
 </html>
