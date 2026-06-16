@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 
 <head>
@@ -154,12 +153,219 @@ font-weight:700;
 background:#0f1c3b;
 
 transform:scale(1.02);
+</style>
+
+</head>
+
+<body>
+
+<div class="background"></div>
+
+<div class="container">
+
+<header>
+
+<h1>دليل الحاسب</h1>
+
+<p>
+كل روابط كلية الحاسب في مكان واحد
+</p>
+
+</header>
+
+
+
+<section class="glass">
+
+<h2>
+
+<i class="fa-solid fa-building-columns"></i>
+
+قروبات كلية الحاسب
+
+</h2>
+
+<div class="links">
+  <a href="https://t.me/qassimuniversityc" target="_blank" class="item">
+
+<span>
+
+<i class="fa-solid fa-bullhorn"></i>
+
+قناة كلية الحاسب
+
+</span>
+
+</a>
+
+  <a href="https://t.me/qassimuniversityIT" target="_blank" class="item">
+
+<span>
+
+<i class="fa-solid fa-users"></i>
+
+مناقشة كلية الحاسب
+
+</span>
+
+</a>
+  
+<a href="https://t.me/COC_QU_channel" target="_blank" class="item">
+
+<span>
+
+<i class="fa-solid fa-bullhorn"></i>
+
+قناة حوسب
+
+</span>
+
+</a>
+<a href="https://t.me/COC_QU" target="_blank" class="item">
+
+<span>
+
+<i class="fa-solid fa-users"></i>
+
+مناقشة حوسب
+
+</span>
+
+</a>
+  *{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Cairo',sans-serif;
+}
+
+body{
+
+background:
+radial-gradient(circle at top,#143d8d 0%,transparent 35%),
+radial-gradient(circle at bottom,#28135a 0%,transparent 30%),
+#04070f;
+
+color:#fff;
+
+min-height:100vh;
+
+overflow-x:hidden;
 
 }
 
-footer{
+.background{
 
-margin-top:60px;
+position:fixed;
+
+inset:0;
+
+background-image:
+radial-gradient(rgba(255,255,255,.15) 1px,transparent 1px);
+
+background-size:45px 45px;
+
+opacity:.15;
+
+z-index:-1;
+
+}
+
+.container{
+
+width:min(900px,92%);
+
+margin:auto;
+
+padding:45px 0;
+
+}
+
+header{
+
+text-align:center;
+
+margin-bottom:45px;
+
+}
+
+header h1{
+
+font-size:62px;
+
+font-weight:800;
+
+color:#6b8cff;
+
+margin-bottom:10px;
+
+text-shadow:0 0 25px rgba(91,131,255,.45);
+
+}
+
+header p{
+
+font-size:23px;
+
+color:#c8d4ff;
+
+}
+
+.glass{
+
+background:rgba(255,255,255,.06);
+
+border:1px solid rgba(255,255,255,.12);
+
+border-radius:28px;
+
+padding:35px;
+
+margin-bottom:35px;
+
+backdrop-filter:blur(18px);
+
+box-shadow:
+0 15px 45px rgba(0,0,0,.35),
+0 0 25px rgba(76,118,255,.15);
+
+}
+
+.glass h2{
+
+display:flex;
+
+align-items:center;
+
+justify-content:flex-start;
+
+gap:12px;
+
+font-size:38px;
+
+margin-bottom:30px;
+
+color:#fff;
+
+}
+
+.glass h2 i{
+
+color:#5f8dff;
+
+}
+
+.links{
+
+display:flex;
+
+flex-direction:column;
+
+gap:18px;
+
+}
+
+.item{
 
 display:flex;
 
@@ -167,290 +373,395 @@ justify-content:space-between;
 
 align-items:center;
 
-font-size:18px;
+padding:20px 28px;
 
-color:#cbd7ff;
+background:#070b17;
+
+border:2px solid transparent;
+
+border-radius:50px;
+
+text-decoration:none;
+
+color:#fff;
+
+font-size:24px;
+
+font-weight:700;
+
+transition:.25s;
+
+}
+
+.item:hover{
+
+transform:translateY(-3px);
+
+border-color:#4f8cff;
+
+background:#122246;
+
+box-shadow:0 0 20px rgba(79,140,255,.35);
+
+}
+
+.item span{
+
+display:flex;
+
+align-items:center;
+
+gap:15px;
+
+}
+
+.item i{
+
+font-size:28px;
+
+color:#80a8ff;
+
+}
+
+.level-title{
+
+font-size:34px;
+
+margin-bottom:25px;
+
+font-weight:800;
+
+display:flex;
+
+align-items:center;
+
+gap:12px;
+
+color:white;
+
+}
+
+.level-title i{
+
+color:#5f8dff;
+
+}
+
+footer{
+
+margin-top:60px;
+
+padding:22px 10px;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+border-top:1px solid rgba(255,255,255,.15);
+
+color:#c7d4ff;
+
+font-size:20px;
 
 }
 
 footer a{
 
-color:#4da3ff;
-
-font-size:32px;
+color:#5f8dff;
 
 text-decoration:none;
 
+font-size:28px;
+
+transition:.25s;
+
 }
 
-</style>
+footer a:hover{
 
-</head>
+transform:scale(1.15);
 
-<body>
+}
 
-<div class="container">
+@media(max-width:700px){
 
-<div class="profile">
+header h1{
 
-<div class="logo">💻</div>
+font-size:46px;
 
-<h1>دليل الحاسب</h1>
+}
 
-<div class="subtitle">
+header p{
 
-كل روابط كلية الحاسب في مكان واحد
+font-size:18px;
 
-</div>
+}
 
-</div>
+.glass{
 
-<div class="section">
+padding:22px;
+
+}
+
+.glass h2{
+
+font-size:28px;
+
+}
+
+.item{
+
+font-size:19px;
+
+padding:18px 22px;
+
+}
+
+.item i{
+
+font-size:23px;
+
+}
+
+footer{
+
+font-size:16px;
+
+}
+
+}
+  
+<!-- ================= المستويات ================= -->
+
+<section class="glass">
 
 <h2>
 
-🏛️ قروبات كلية الحاسب
+<i class="fa-solid fa-layer-group"></i>
+
+المستويات
 
 </h2>
 
-<a class="item"
+<!-- المستوى الأول -->
 
-href="https://t.me/qassimuniversityc"
+<div class="level-title">
 
-target="_blank">
+<i class="fa-solid fa-1"></i>
 
-📢 قناة كلية الحاسب
+المستوى الأول
 
-</a>
+</div>
 
-<a class="item"
-
-href="https://t.me/qassimuniversityIT"
-
-target="_blank">
-
-👥 مناقشة كلية الحاسب
-
-</a>
+<div class="links">
 
 <a class="item"
-
-href="https://t.me/COC_QU_channel"
-
+href="https://t.me/addlist/LH-wE8fs_4ExNjE0"
 target="_blank">
 
-📢 قناة حوسب
+<span>
+
+<i class="fa-solid fa-folder-open"></i>
+
+قنوات مستديم
+
+</span>
 
 </a>
 
 <a class="item"
-
-href="https://t.me/COC_QU"
-
+href="https://t.me/hawsib1"
 target="_blank">
 
-👥 مناقشة حوسب
+<span>
+
+<i class="fa-solid fa-bullhorn"></i>
+
+قناة المستوى الأول
+
+</span>
 
 </a>
 
 <a class="item"
-
-href="https://t.me/hawsib_Support_Bot"
-
+href="https://t.me/hawsib_1"
 target="_blank">
 
-👥 مجموعة طالبات حوسب
+<span>
+
+<i class="fa-solid fa-users"></i>
+
+مناقشة المستوى الأول
+
+</span>
 
 </a>
 
 </div>
-<!-- المستويات -->
 
-<div class="section">
+<!-- المستوى الثاني -->
 
-<h2>📚 المستويات</h2>
+<div class="level-title">
 
-<h3 style="margin:20px 0;color:#8fb4ff;">المستوى الأول</h3>
-
-<a class="item" href="https://t.me/addlist/LH-wE8fs_4ExNjE0" target="_blank">⭐ قنوات مستديم</a>
-
-<a class="item" href="https://t.me/hawsib1" target="_blank">📢 قناة المستوى الأول</a>
-
-<a class="item" href="https://t.me/hawsib_1" target="_blank">👥 مناقشة المستوى الأول</a>
-
-
-<h3 style="margin:35px 0 20px;color:#8fb4ff;">المستوى الثاني</h3>
-
-<a class="item" href="https://t.me/addlist/UZHn4fPZTvI4ODBk" target="_blank">⭐ قنوات مستديم</a>
-
-<a class="item" href="https://t.me/hawsib2" target="_blank">📢 قناة المستوى الثاني</a>
-
-<a class="item" href="https://t.me/hawsib2" target="_blank">👥 مناقشة المستوى الثاني</a>
-
-
-<h3 style="margin:35px 0 20px;color:#8fb4ff;">المستوى الثالث</h3>
-
-<a class="item" href="https://t.me/addlist/WY-nb6Wz4EtkYjZk" target="_blank">⭐ قنوات مستديم</a>
-
-<a class="item" href="https://t.me/hawsib3" target="_blank">📢 قناة المستوى الثالث</a>
-
-<a class="item" href="https://t.me/hawsib_3" target="_blank">👥 مناقشة المستوى الثالث</a>
-
-
-<h3 style="margin:35px 0 20px;color:#8fb4ff;">المستوى الرابع</h3>
-
-<a class="item" href="https://t.me/addlist/ED-1PugxTU42NjE8" target="_blank">⭐ قنوات مستديم</a>
-
-<a class="item" href="https://t.me/hawsib4" target="_blank">📢 قناة المستوى الرابع</a>
-
-<a class="item" href="https://t.me/hawsib4" target="_blank">👥 مناقشة المستوى الرابع</a>
-
-
-<h3 style="margin:35px 0 20px;color:#8fb4ff;">المستوى الخامس</h3>
-
-<a class="item" href="https://t.me/IT_5_moves" target="_blank">🚀 Moves IT</a>
-
-<a class="item" href="https://t.me/Brightofcs5" target="_blank">🚀 Moves CS</a>
-
-<a class="item" href="https://t.me/CEGOATS/1" target="_blank">🚀 Moves CE</a>
-
-<a class="item" href="https://t.me/hawsib5" target="_blank">📢 قناة المستوى الخامس</a>
-
-<a class="item" href="https://t.me/hawsib_5" target="_blank">👥 مناقشة المستوى الخامس</a>
-
-</div>
-<!-- ===== المستوى الخامس ===== -->
-
-<div class="section">
-
-<h2>المستوى الخامس</h2>
-
-<div class="item">
-<a href="https://t.me/IT_5_moves" target="_blank">
-🚀 Moves IT
-</a>
-</div>
-
-<div class="item">
-<a href="https://t.me/Brightofcs5" target="_blank">
-🚀 Moves CS
-</a>
-</div>
-
-<div class="item">
-<a href="https://t.me/CEGOATS/1" target="_blank">
-🚀 Moves CE
-</a>
-</div>
-
-<div class="item-title">
-💻 حوسب
-</div>
-
-<div class="item">
-<a href="https://t.me/hawsib5" target="_blank">
-📢 قناة المستوى الخامس
-</a>
-</div>
-
-<div class="item">
-<a href="https://t.me/hawsib_5" target="_blank">
-👥 مناقشة المستوى الخامس
-</a>
-</div>
+المستوى الثاني
 
 </div>
 
-<!-- ===== المستوى السادس ===== -->
+<div class="links">
 
-<div class="section">
-
-<h2>المستوى السادس</h2>
-
-<div class="item">
-<a href="https://t.me/COC_6_moves" target="_blank">
-🚀 Moves
-</a>
-</div>
-
-<div class="item">
-<a href="https://t.me/hawsib6" target="_blank">
-📢 قناة المستوى السادس
-</a>
-</div>
-
-<div class="item">
-<a href="https://t.me/hawsib_6" target="_blank">
-👥 مناقشة المستوى السادس
-</a>
-</div>
-
-</div>
-
-<!-- ===== المستوى السابع ===== -->
-
-<div class="section">
-
-<h2>المستوى السابع</h2>
-
-<div class="item">
-<a href="https://t.me/COC_7_moves" target="_blank">
-🚀 Moves
-</a>
-</div>
-
-</div>
-
-<!-- ===== المستوى الثامن ===== -->
-
-<div class="section">
-
-<h2>المستوى الثامن</h2>
-
-<div class="item">
-<a href="https://t.me/COC_8_moves" target="_blank">
-🚀 Moves
-</a>
-</div>
-
-</div>
-
-<!-- ===== الفوتر ===== -->
-
-<footer class="footer">
-
-<a class="telegram-footer"
-href="https://t.me/Sherisherre"
+<a class="item"
+href="https://t.me/addlist/UZHn4fPZTvI4ODBk"
 target="_blank">
-✈️
+
+<span>
+
+<i class="fa-solid fa-folder-open"></i>
+
+قنوات مستديم
+
+</span>
+
 </a>
 
-<span>Sherisherre</span>
+<a class="item"
+href="https://t.me/hawsib2"
+target="_blank">
 
-</footer>
+<span>
 
-<script>
+<i class="fa-solid fa-bullhorn"></i>
 
-function filterCards(){
+قناة المستوى الثاني
 
-let input=document.getElementById("search").value.toLowerCase();
+</span>
 
-let cards=document.querySelectorAll(".section");
+</a>
 
-cards.forEach(card=>{
+<a class="item"
+href="https://t.me/hawsib2"
+target="_blank">
 
-if(card.innerText.toLowerCase().includes(input)){
-card.style.display="block";
-}else{
-card.style.display="none";
-}
+<span>
 
-});
+<i class="fa-solid fa-users"></i>
 
-}
+مناقشة المستوى الثاني
 
-</script>
+</span>
 
-</body>
+</a>
 
-</html>
+</div>
+
+<!-- المستوى الثالث -->
+
+<div class="level-title">
+
+المستوى الثالث
+
+</div>
+
+<div class="links">
+
+<a class="item"
+href="https://t.me/addlist/WY-nb6Wz4EtkYjZk"
+target="_blank">
+
+<span>
+
+<i class="fa-solid fa-folder-open"></i>
+
+قنوات مستديم
+
+</span>
+
+</a>
+
+<a class="item"
+href="https://t.me/hawsib3"
+target="_blank">
+
+<span>
+
+<i class="fa-solid fa-bullhorn"></i>
+
+قناة المستوى الثالث
+
+</span>
+
+</a>
+
+<a class="item"
+href="https://t.me/hawsib_3"
+target="_blank">
+
+<span>
+
+<i class="fa-solid fa-users"></i>
+
+مناقشة المستوى الثالث
+
+</span>
+
+</a>
+
+</div>
+
+<!-- المستوى الرابع -->
+
+<div class="level-title">
+
+المستوى الرابع
+
+</div>
+
+<div class="links">
+
+<a class="item"
+href="https://t.me/addlist/ED-1PugxTU42NjE8"
+target="_blank">
+
+<span>
+
+<i class="fa-solid fa-folder-open"></i>
+
+قنوات مستديم
+
+</span>
+
+</a>
+
+<a class="item"
+href="https://t.me/hawsib4"
+target="_blank">
+
+<span>
+
+<i class="fa-solid fa-bullhorn"></i>
+
+قناة المستوى الرابع
+
+</span>
+
+</a>
+
+<a class="item"
+href="https://t.me/hawsib4"
+target="_blank">
+
+<span>
+
+<i class="fa-solid fa-users"></i>
+
+مناقشة المستوى الرابع
+
+</span>
+
+</a>
+
+</div>
+
+</section>
+ 
