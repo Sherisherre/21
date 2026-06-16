@@ -1,103 +1,231 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دليل الحاسب</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* تعريف المتغيرات للألوان - تتغير بناءً على الإعدادات */
+        :root {
+            --bg-color: #f4f7f6;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --primary-color: #27ae60; /* اللون الافتراضي (أخضر) */
+            --header-bg: #2c3e50;
+            --shadow: rgba(0,0,0,0.1);
+        }
 
-<meta charset="UTF-8">
+        /* تنسيق الوضع المظلم */
+        [data-theme="dark"] {
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --text-color: #e0e0e0;
+            --header-bg: #000000;
+            --shadow: rgba(0,0,0,0.5);
+        }
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0; padding: 0;
+            transition: all 0.3s ease;
+        }
 
-<title>دليل الحاسب</title>
+        /* الهيدر */
+        .header {
+            background-color: var(--header-bg);
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            position: relative;
+        }
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
+        /* زر الإعدادات */
+        .settings-btn {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 24px;
+            cursor: pointer;
+            color: white;
+        }
 
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        .container { max-width: 600px; margin: 20px auto; padding: 10px; }
 
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+        /* التبويبات والروابط */
+        details {
+            background: var(--card-bg);
+            margin-bottom: 10px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px var(--shadow);
+            overflow: hidden;
+        }
 
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+        summary {
+            padding: 15px; font-weight: bold; cursor: pointer; list-style: none;
+            display: flex; justify-content: space-between; align-items: center;
+        }
 
-<style>
+        summary::after { content: '\f107'; font-family: 'Font Awesome 6 Free'; font-weight: 900; }
 
-*{
+        .link-card {
+            display: flex; align-items: center; text-decoration: none;
+            color: var(--text-color); padding: 12px; margin-bottom: 8px;
+            background: var(--bg-color); border-radius: 8px; transition: 0.3s;
+        }
+        
+        .link-card i { margin-left: 15px; color: var(--primary-color); font-size: 1.2rem; }
+        .section-title { border-right: 4px solid var(--primary-color); padding-right: 10px; margin: 15px 0; }
 
-margin:0;
+        /* نافذة الإعدادات المنبثقة (مثل الصورة) */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7); display: none; justify-content: center; align-items: center;
+            z-index: 1000;
+        }
 
-padding:0;
+        .settings-modal {
+            background: #1a1a1a; color: white; width: 90%; max-width: 400px;
+            padding: 25px; border-radius: 20px; position: relative;
+        }
 
-box-sizing:border-box;
+        .close-modal { position: absolute; right: 20px; top: 20px; cursor: pointer; font-size: 20px; }
 
-font-family:'Cairo',sans-serif;
+        .settings-row {
+            display: flex; justify-content: space-between; align-items: center; margin: 25px 0;
+        }
 
-}
+        /* أزرار الوضع (نهار/ظلام) */
+        .mode-switch {
+            background: #333; border-radius: 25px; display: flex; padding: 5px;
+        }
+        .mode-switch div {
+            padding: 5px 20px; border-radius: 20px; cursor: pointer; font-size: 14px;
+        }
+        .active-mode { background: #27ae60; color: white; }
 
-html{
+        /* دوائر الألوان */
+        .color-options { display: flex; gap: 10px; }
+        .color-dot { width: 25px; height: 25px; border-radius: 50%; cursor: pointer; border: 2px solid transparent; }
+        .color-dot.active { border-color: white; }
 
-scroll-behavior:smooth;
+        /* التذييل */
+        .footer {
+            margin-top: 40px; padding: 20px; display: flex;
+            justify-content: space-between; align-items: center;
+            background: var(--card-bg); border-top: 1px solid var(--shadow);
+        }
+    </style>
+</head>
+<body>
 
-}
+    <div class="header">
+        <i class="fa-solid fa-gear settings-btn" onclick="toggleSettings()"></i>
+        <h1>دليل الحاسب</h1>
+    </div>
 
-body{
+    <!-- نافذة الإعدادات -->
+    <div class="modal-overlay" id="settingsModal">
+        <div class="settings-modal">
+            <i class="fa-solid fa-xmark close-modal" onclick="toggleSettings()"></i>
+            <h2 style="text-align: center; margin-top: 0;">الإعدادات</h2>
+            
+            <p style="color: #27ae60; font-weight: bold; margin-bottom: 5px;">مظهر التطبيق</p>
+            <hr style="border: 0.5px solid #333;">
 
-background:
-radial-gradient(circle at top,#1c3f89 0%,transparent 30%),
-radial-gradient(circle at bottom,#35105f 0%,transparent 25%),
-#03060f;
+            <div class="settings-row">
+                <span>الوضع</span>
+                <div class="mode-switch">
+                    <div id="lightBtn" onclick="setTheme('light')">نهار</div>
+                    <div id="darkBtn" onclick="setTheme('dark')">ظلام</div>
+                </div>
+            </div>
 
-color:white;
+            <div class="settings-row">
+                <span>اختر السمة</span>
+                <div class="color-options">
+                    <div class="color-dot" style="background: #27ae60;" onclick="setAccent('#27ae60')"></div>
+                    <div class="color-dot" style="background: #3498db;" onclick="setAccent('#3498db')"></div>
+                    <div class="color-dot" style="background: #9b59b6;" onclick="setAccent('#9b59b6')"></div>
+                    <div class="color-dot" style="background: #e74c3c;" onclick="setAccent('#e74c3c')"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-min-height:100vh;
+    <div class="container">
+        <!-- تبويب الكلية -->
+        <details>
+            <summary>الكلية</summary>
+            <div style="padding: 15px;">
+                <h3 class="section-title">قروبات كلية الحاسب</h3>
+                <a href="https://t.me/qassimuniversityc" class="link-card"><i class="fa-brands fa-telegram"></i> قناة كلية الحاسب</a>
+                <a href="https://t.me/qassimuniversityIT" class="link-card"><i class="fa-regular fa-comments"></i> مناقشة كلية الحاسب</a>
+                <a href="https://t.me/COC_QU_channel" class="link-card"><i class="fa-brands fa-telegram"></i> قناة حوسب</a>
+                <a href="https://t.me/COC_QU" class="link-card"><i class="fa-regular fa-comments"></i> مناقشة حوسب</a>
+                <a href="https://t.me/hawsib_Support_Bot" class="link-card"><i class="fa-solid fa-robot"></i> طالبات حوسب (بوت الدعم)</a>
+            </div>
+        </details>
 
-overflow-x:hidden;
+        <!-- تبويب المستويات (مثال لثلاث مستويات لعدم الإطالة) -->
+        <details>
+            <summary>المستويات</summary>
+            <div style="padding: 10px;">
+                <details>
+                    <summary>المستوى الأول</summary>
+                    <div style="padding: 10px;">
+                        <a href="https://t.me/addlist/LH-wE8fs_4ExNjE0" class="link-card" style="background: var(--primary-color); color: white;">قنوات مستديم</a>
+                        <a href="https://t.me/hawsib1" class="link-card"><i class="fa-brands fa-telegram"></i> قناة حوسب 1</a>
+                    </div>
+                </details>
+                <!-- كرر نفس التنسيق للبقية -->
+            </div>
+        </details>
+    </div>
 
-}
+    <div class="footer">
+        <div style="font-weight: bold;">Sherisherre</div>
+        <a href="https://t.me/Sherisherre" style="color: #0088cc; font-size: 24px;"><i class="fa-brands fa-telegram"></i></a>
+    </div>
 
-body::before{
+    <script>
+        // فتح وإغلاق النافذة
+        function toggleSettings() {
+            const modal = document.getElementById('settingsModal');
+            modal.style.display = (modal.style.display === 'flex') ? 'none' : 'flex';
+        }
 
-content:"";
+        // تغيير الثيم (فاتح / مظلم)
+        function setTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+            updateThemeButtons(theme);
+        }
 
-position:fixed;
+        function updateThemeButtons(theme) {
+            document.getElementById('lightBtn').classList.toggle('active-mode', theme === 'light');
+            document.getElementById('darkBtn').classList.toggle('active-mode', theme === 'dark');
+        }
 
-inset:0;
+        // تغيير لون السمة
+        function setAccent(color) {
+            document.documentElement.style.setProperty('--primary-color', color);
+            localStorage.setItem('accentColor', color);
+        }
 
-background-image:
-radial-gradient(rgba(255,255,255,.08) 1px,transparent 1px);
-
-background-size:45px 45px;
-
-opacity:.18;
-
-pointer-events:none;
-
-}
-
-.container{
-
-width:min(950px,92%);
-
-margin:auto;
-
-padding:40px 0 60px;
-
-position:relative;
-
-z-index:2;
-
-}
-
-header{
-
-text-align:center;
-
-margin-bottom:35px;
-
-}
-
-.logo{
-
-width:120px;
-
-height:120px;
-
-margin:auto;
+        // تحميل الإعدادات المحفوظة عند فتح الصفحة
+        window.onload = () => {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            const savedAccent = localStorage.getItem('accentColor') || '#27ae60';
+            
+            setTheme(savedTheme);
+            setAccent(savedAccent);
+        };
+    </script>
+</body>
+</html>
