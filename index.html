@@ -9,13 +9,15 @@
     
     <style>
         :root {
-            --bg-color: #0b0f19;
-            --card-bg: #131926;
-            --primary-blue: #00bcd4;
-            --primary-hover: #00e5ff;
-            --text-main: #ffffff;
+            --bg-color: #070b13;
+            --card-bg: rgba(15, 23, 42, 0.6);
+            --card-border: rgba(51, 65, 85, 0.5);
+            --primary-blue: #38bdf8;
+            --primary-glow: rgba(56, 189, 248, 0.15);
+            --text-main: #f8fafc;
             --text-muted: #94a3b8;
-            --btn-bg: #1e293b;
+            --btn-bg: #0f172a;
+            --btn-hover: #1e293b;
         }
 
         * {
@@ -33,109 +35,99 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 40px 20px 120px 20px;
+            padding: 50px 20px 140px 20px;
             overflow-x: hidden;
-            background-image: radial-gradient(circle at top, rgba(0, 188, 212, 0.15) 0%, transparent 60%);
+            background-image: 
+                radial-gradient(circle at 0% 0%, rgba(56, 189, 248, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 100% 100%, rgba(56, 189, 248, 0.05) 0%, transparent 40%);
         }
 
         .header {
             text-align: center;
-            margin-bottom: 35px;
+            margin-bottom: 40px;
         }
 
         .header h1 {
-            font-size: 2.6rem;
-            color: var(--primary-blue);
+            font-size: 2.8rem;
+            color: var(--text-main);
             font-weight: 700;
-            margin-bottom: 10px;
-            text-shadow: 0 0 20px rgba(0, 188, 212, 0.4);
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
         }
 
         .header p {
             color: var(--text-muted);
-            font-size: 1.05rem;
-            max-width: 500px;
+            font-size: 1.1rem;
+            max-width: 600px;
             margin: 0 auto;
-            line-height: 1.4;
+            line-height: 1.6;
         }
 
-        /* التبويبات الرئيسية (الكلية / المستويات) */
         .main-tabs {
             display: flex;
-            gap: 15px;
-            margin-bottom: 25px;
-            border-bottom: 2px solid #1e293b;
-            padding-bottom: 8px;
+            background-color: var(--btn-bg);
+            border: 1px solid var(--card-border);
+            padding: 6px;
+            border-radius: 30px;
+            margin-bottom: 35px;
             width: 100%;
-            max-width: 500px;
-            justify-content: center;
+            max-width: 400px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
         }
 
         .tab-btn {
+            flex: 1;
             background: none;
             border: none;
             color: var(--text-muted);
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             font-weight: 500;
             cursor: pointer;
-            padding: 8px 22px;
-            transition: all 0.3s ease;
-            position: relative;
+            padding: 10px 0;
+            border-radius: 25px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .tab-btn.active {
-            color: var(--primary-blue);
-            font-weight: 700;
-        }
-
-        .tab-btn.active::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 100%;
-            height: 3px;
             background-color: var(--primary-blue);
-            box-shadow: 0 0 10px var(--primary-blue);
+            color: #0f172a;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3);
         }
 
-        /* تبويبات المستويات الفرعية (من 1 إلى 8) */
         .levels-tabs {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 25px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-bottom: 35px;
             width: 100%;
-            max-width: 500px;
-            justify-content: center;
-            flex-wrap: wrap;
+            max-width: 600px;
         }
 
         .level-btn {
             background-color: var(--btn-bg);
-            border: 1px solid #334155;
+            border: 1px solid var(--card-border);
             color: var(--text-main);
-            padding: 6px 14px;
-            border-radius: 20px;
+            padding: 12px 0;
+            border-radius: 12px;
             cursor: pointer;
             font-weight: 500;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+            text-align: center;
         }
 
         .level-btn.active, .level-btn:hover {
-            background-color: var(--primary-blue);
             border-color: var(--primary-blue);
-            color: #000;
-            font-weight: 700;
-            box-shadow: 0 0 15px rgba(0, 188, 212, 0.4);
+            background-color: var(--primary-glow);
+            color: var(--primary-blue);
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.1);
         }
 
-        /* حاويات المحتوى */
         .content-section {
             display: none;
             width: 100%;
-            max-width: 480px;
-            animation: fadeIn 0.5s ease forwards;
+            max-width: 600px;
         }
 
         .content-section.active {
@@ -144,106 +136,114 @@
 
         .level-content {
             display: none;
-            animation: fadeIn 0.3s ease forwards;
         }
 
         .level-content.active {
             display: block;
         }
 
-        /* الكروت والقوائم */
         .card {
-            background-color: var(--card-bg);
-            border-radius: 16px;
-            padding: 22px;
-            border: 1px solid #1e293b;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid var(--card-border);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 0.4s ease forwards;
         }
 
         .card-title {
             display: flex;
             align-items: center;
-            gap: 12px;
-            font-size: 1.3rem;
-            margin-bottom: 18px;
+            gap: 14px;
+            font-size: 1.4rem;
+            margin-bottom: 25px;
             color: var(--text-main);
-            border-bottom: 1px solid #1e293b;
-            padding-bottom: 12px;
             font-weight: 700;
         }
 
         .card-title i {
             color: var(--primary-blue);
-            font-size: 1.4rem;
+            font-size: 1.5rem;
         }
 
         .section-subtitle {
-            font-size: 1.05rem;
+            font-size: 1.1rem;
             color: var(--primary-blue);
-            margin: 15px 0 10px 0;
+            margin: 25px 0 12px 0;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
+            font-weight: 700;
+            opacity: 0.9;
         }
 
-        /* الخانات والأزرار القابلة للضغط */
         .link-item {
             display: flex;
             align-items: center;
             justify-content: space-between;
             background-color: var(--btn-bg);
-            border: 1px solid #334155;
-            padding: 12px 18px;
-            border-radius: 12px;
+            border: 1px solid var(--card-border);
+            padding: 16px 20px;
+            border-radius: 14px;
             text-decoration: none;
             color: var(--text-main);
-            margin-bottom: 10px;
-            transition: all 0.3s ease;
+            margin-bottom: 12px;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .link-item:hover {
             border-color: var(--primary-blue);
+            background-color: var(--btn-hover);
             transform: translateY(-2px);
-            background-color: rgba(0, 188, 212, 0.05);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
         }
 
         .link-details {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 14px;
         }
 
         .link-details i {
-            font-size: 1.15rem;
+            font-size: 1.25rem;
             color: var(--text-muted);
             width: 24px;
             text-align: center;
+            transition: color 0.25s ease;
         }
 
         .link-item:hover .link-details i {
             color: var(--primary-blue);
         }
 
+        .link-details span {
+            font-size: 1.05rem;
+            font-weight: 500;
+        }
+
         .link-item .arrow {
             color: var(--text-muted);
-            font-size: 0.85rem;
-            transition: transform 0.3s;
+            font-size: 0.9rem;
+            transition: all 0.25s ease;
         }
 
         .link-item:hover .arrow {
-            transform: translateX(-5px);
+            transform: translateX(-4px);
             color: var(--primary-blue);
         }
 
-        /* الشريط السفلي المتنقل والثابت */
         .footer {
             position: fixed;
             bottom: 0;
             left: 0;
             width: 100%;
-            background-color: #090d16;
-            border-top: 1px solid #1e293b;
-            padding: 14px 40px;
+            background-color: rgba(7, 11, 19, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-top: 1px solid var(--card-border);
+            padding: 18px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -253,15 +253,17 @@
         .footer .right-text {
             font-weight: 500;
             font-size: 1rem;
-            color: var(--text-main);
+            color: var(--text-muted);
             letter-spacing: 0.5px;
+            order: 1; 
         }
 
         .footer .left-icon a {
-            color: var(--text-main);
-            font-size: 1.4rem;
-            transition: all 0.3s ease;
+            color: var(--text-muted);
+            font-size: 1.6rem;
+            transition: all 0.25s ease;
             display: inline-block;
+            order: 2; 
         }
 
         .footer .left-icon a:hover {
@@ -270,37 +272,34 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; transform: translateY(12px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* ضبط وتصغير الأبعاد للهواتف الذكية لمنع الضخامة المفرطة */
         @media (max-width: 600px) {
-            body { padding: 25px 14px 100px 14px; }
-            .header { margin-bottom: 25px; }
-            .header h1 { font-size: 1.8rem; } /* تصغير العنوان الرئيسي ليناسب شاشة الجوال */
-            .header p { font-size: 0.9rem; padding: 0 10px; }
+            body { padding: 35px 16px 110px 16px; }
+            .header { margin-bottom: 30px; }
+            .header h1 { font-size: 2rem; }
+            .header p { font-size: 0.95rem; }
             
-            .main-tabs { margin-bottom: 20px; padding-bottom: 6px; gap: 10px; }
-            .tab-btn { font-size: 1rem; padding: 6px 16px; }
-            .tab-btn.active::after { bottom: -8px; }
+            .main-tabs { margin-bottom: 25px; }
+            .tab-btn { font-size: 1rem; padding: 8px 0; }
             
-            .levels-tabs { gap: 5px; margin-bottom: 20px; }
-            .level-btn { padding: 5px 10px; font-size: 0.8rem; border-radius: 15px; }
+            .levels-tabs { grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 25px; }
+            .level-btn { padding: 10px 0; font-size: 0.9rem; border-radius: 10px; }
             
-            .card { padding: 16px; border-radius: 14px; }
-            .card-title { font-size: 1.1rem; margin-bottom: 14px; padding-bottom: 10px; }
-            .card-title i { font-size: 1.2rem; }
-            .section-subtitle { font-size: 0.95rem; margin: 12px 0 8px 0; }
+            .card { padding: 20px; border-radius: 16px; }
+            .card-title { font-size: 1.2rem; margin-bottom: 18px; }
+            .section-subtitle { font-size: 1rem; margin: 20px 0 10px 0; }
             
-            .link-item { padding: 10px 14px; margin-bottom: 8px; border-radius: 10px; }
-            .link-details { gap: 10px; }
-            .link-details span { font-size: 0.9rem; }
-            .link-details i { font-size: 1rem; width: 20px; }
+            .link-item { padding: 12px 16px; margin-bottom: 10px; border-radius: 12px; }
+            .link-details { gap: 12px; }
+            .link-details span { font-size: 0.95rem; }
+            .link-details i { font-size: 1.1rem; width: 20px; }
             
-            .footer { padding: 12px 20px; }
-            .footer .right-text { font-size: 0.85rem; } /* تصغير خط اليوزر بشكل أنيق على الجوال */
-            .footer .left-icon a { font-size: 1.2rem; }
+            .footer { padding: 14px 20px; }
+            .footer .right-text { font-size: 0.9rem; }
+            .footer .left-icon a { font-size: 1.4rem; }
         }
     </style>
 </head>
@@ -308,7 +307,7 @@
 
     <div class="header">
         <h1>دليل الحاسب</h1>
-        <p> دليلك الأكاديمي لجميع المجموعات والمبادرات الطلابية</p>
+        <p>وصول سريع ومنظم لجميع الروابط التطوعية والمبادرات الطلابية.</p>
     </div>
 
     <div class="main-tabs">
@@ -371,10 +370,17 @@
 
         <div id="level-1" class="level-content active card">
             <div class="card-title"><i class="fa-solid fa-layer-group"></i> <span>المستوى الأول</span></div>
+            
+            <div class="section-subtitle"><i class="fa-solid fa-star"></i> مستديم</div>
             <a href="https://t.me/addlist/LH-wE8fs_4ExNjE0" target="_blank" class="link-item">
                 <div class="link-details"><i class="fa-solid fa-star"></i> <span>قنوات مستديم</span></div>
                 <i class="fa-solid fa-chevron-left arrow"></i>
             </a>
+            <a href="https://t.me/addlist/LH-wE8fs_4ExNjE0" target="_blank" class="link-item">
+                <div class="link-details"><i class="fa-solid fa-book-bookmark"></i> <span>قنوات المواد</span></div>
+                <i class="fa-solid fa-chevron-left arrow"></i>
+            </a>
+
             <div class="section-subtitle"><i class="fa-solid fa-laptop-code"></i> حوسب</div>
             <a href="https://t.me/hawsib1" target="_blank" class="link-item">
                 <div class="link-details"><i class="fa-solid fa-bullhorn"></i> <span>قناة المستوى الأول</span></div>
@@ -388,10 +394,17 @@
 
         <div id="level-2" class="level-content card">
             <div class="card-title"><i class="fa-solid fa-layer-group"></i> <span>المستوى الثاني</span></div>
+            
+            <div class="section-subtitle"><i class="fa-solid fa-star"></i> مستديم</div>
             <a href="https://t.me/addlist/UZHn4fPZTvI4ODBk" target="_blank" class="link-item">
                 <div class="link-details"><i class="fa-solid fa-star"></i> <span>قنوات مستديم</span></div>
                 <i class="fa-solid fa-chevron-left arrow"></i>
             </a>
+            <a href="https://t.me/addlist/UZHn4fPZTvI4ODBk" target="_blank" class="link-item">
+                <div class="link-details"><i class="fa-solid fa-book-bookmark"></i> <span>قنوات المواد</span></div>
+                <i class="fa-solid fa-chevron-left arrow"></i>
+            </a>
+
             <div class="section-subtitle"><i class="fa-solid fa-laptop-code"></i> حوسب</div>
             <a href="https://t.me/hawsib2" target="_blank" class="link-item">
                 <div class="link-details"><i class="fa-solid fa-bullhorn"></i> <span>قناة المستوى الثاني</span></div>
@@ -405,10 +418,17 @@
 
         <div id="level-3" class="level-content card">
             <div class="card-title"><i class="fa-solid fa-layer-group"></i> <span>المستوى الثالث</span></div>
+            
+            <div class="section-subtitle"><i class="fa-solid fa-star"></i> مستديم</div>
             <a href="https://t.me/addlist/WY-nb6Wz4EtkYjZk" target="_blank" class="link-item">
                 <div class="link-details"><i class="fa-solid fa-star"></i> <span>قنوات مستديم</span></div>
                 <i class="fa-solid fa-chevron-left arrow"></i>
             </a>
+            <a href="https://t.me/addlist/WY-nb6Wz4EtkYjZk" target="_blank" class="link-item">
+                <div class="link-details"><i class="fa-solid fa-book-bookmark"></i> <span>قنوات المواد</span></div>
+                <i class="fa-solid fa-chevron-left arrow"></i>
+            </a>
+
             <div class="section-subtitle"><i class="fa-solid fa-laptop-code"></i> حوسب</div>
             <a href="https://t.me/hawsib3" target="_blank" class="link-item">
                 <div class="link-details"><i class="fa-solid fa-bullhorn"></i> <span>قناة المستوى الثالث</span></div>
@@ -422,10 +442,17 @@
 
         <div id="level-4" class="level-content card">
             <div class="card-title"><i class="fa-solid fa-layer-group"></i> <span>المستوى الرابع</span></div>
+            
+            <div class="section-subtitle"><i class="fa-solid fa-star"></i> مستديم</div>
             <a href="https://t.me/addlist/ED-1PugxTU42NjE8" target="_blank" class="link-item">
                 <div class="link-details"><i class="fa-solid fa-star"></i> <span>قنوات مستديم</span></div>
                 <i class="fa-solid fa-chevron-left arrow"></i>
             </a>
+            <a href="https://t.me/addlist/ED-1PugxTU42NjE8" target="_blank" class="link-item">
+                <div class="link-details"><i class="fa-solid fa-book-bookmark"></i> <span>قنوات المواد</span></div>
+                <i class="fa-solid fa-chevron-left arrow"></i>
+            </a>
+
             <div class="section-subtitle"><i class="fa-solid fa-laptop-code"></i> حوسب</div>
             <a href="https://t.me/hawsib3" target="_blank" class="link-item">
                 <div class="link-details"><i class="fa-solid fa-bullhorn"></i> <span>قناة المستوى الرابع</span></div>
@@ -439,6 +466,7 @@
 
         <div id="level-5" class="level-content card">
             <div class="card-title"><i class="fa-solid fa-layer-group"></i> <span>المستوى الخامس</span></div>
+            
             <div class="section-subtitle"><i class="fa-solid fa-route"></i> Moves</div>
             <a href="https://t.me/IT_5_moves" target="_blank" class="link-item">
                 <div class="link-details"><i class="fa-solid fa-circle-nodes"></i> <span>IT</span></div>
@@ -452,24 +480,33 @@
                 <div class="link-details"><i class="fa-solid fa-circle-nodes"></i> <span>CE</span></div>
                 <i class="fa-solid fa-chevron-left arrow"></i>
             </a>
-            <div class="section-subtitle"><i class="fa-solid fa-laptop-code"></i> حوسب</div>
-            <a href="https://t.me/hawsib5" target="_blank" class="link-item">
-                <div class="link-details"><i class="fa-solid fa-bullhorn"></i> <span>قناة المستوى الخامس</span></div>
+
+            <div class="section-subtitle"><i class="fa-solid fa-hands-holding-child"></i> مبادرات الدفعة</div>
+            <a href="https://t.me/COMPUTERLEVEL5" target="_blank" class="link-item">
+                <div class="link-details"><i class="fa-solid fa-bullhorn"></i> <span>قناة المستوى</span></div>
                 <i class="fa-solid fa-chevron-left arrow"></i>
             </a>
-            <a href="https://t.me/hawsib_5" target="_blank" class="link-item">
-                <div class="link-details"><i class="fa-solid fa-comments"></i> <span>مناقشة المستوى الخامس</span></div>
+            <a href="https://t.me/COMPUTERLEVEL5" target="_blank" class="link-item">
+                <div class="link-details"><i class="fa-solid fa-hands-holding-child"></i> <span>مبادرات الدفعة</span></div>
                 <i class="fa-solid fa-chevron-left arrow"></i>
             </a>
         </div>
 
         <div id="level-6" class="level-content card">
             <div class="card-title"><i class="fa-solid fa-layer-group"></i> <span>المستوى السادس</span></div>
+            
             <div class="section-subtitle"><i class="fa-solid fa-route"></i> Moves</div>
             <a href="https://t.me/COC_6_moves" target="_blank" class="link-item">
                 <div class="link-details"><i class="fa-solid fa-globe"></i> <span>جميع التخصصات</span></div>
                 <i class="fa-solid fa-chevron-left arrow"></i>
             </a>
+
+            <div class="section-subtitle"><i class="fa-solid fa-hands-holding-child"></i> مبادرات الدفعة</div>
+            <a href="https://t.me/computerlevel6" target="_blank" class="link-item">
+                <div class="link-details"><i class="fa-solid fa-bullhorn"></i> <span>قناة المستوى</span></div>
+                <i class="fa-solid fa-chevron-left arrow"></i>
+            </a>
+
             <div class="section-subtitle"><i class="fa-solid fa-laptop-code"></i> حوسب</div>
             <a href="https://t.me/hawsib6" target="_blank" class="link-item">
                 <div class="link-details"><i class="fa-solid fa-bullhorn"></i> <span>قناة المستوى السادس</span></div>
@@ -483,18 +520,32 @@
 
         <div id="level-7" class="level-content card">
             <div class="card-title"><i class="fa-solid fa-layer-group"></i> <span>المستوى السابع</span></div>
+            
             <div class="section-subtitle"><i class="fa-solid fa-route"></i> Moves</div>
             <a href="https://t.me/COC_7_moves" target="_blank" class="link-item">
                 <div class="link-details"><i class="fa-solid fa-globe"></i> <span>جميع التخصصات</span></div>
+                <i class="fa-solid fa-chevron-left arrow"></i>
+            </a>
+
+            <div class="section-subtitle"><i class="fa-solid fa-hands-holding-child"></i> مبادرات الدفعة</div>
+            <a href="https://t.me/COMPUTERLEVEL_7" target="_blank" class="link-item">
+                <div class="link-details"><i class="fa-solid fa-bullhorn"></i> <span>قناة المستوى</span></div>
                 <i class="fa-solid fa-chevron-left arrow"></i>
             </a>
         </div>
 
         <div id="level-8" class="level-content card">
             <div class="card-title"><i class="fa-solid fa-layer-group"></i> <span>المستوى الثامن</span></div>
+            
             <div class="section-subtitle"><i class="fa-solid fa-route"></i> Moves</div>
             <a href="https://t.me/COC_8_moves" target="_blank" class="link-item">
                 <div class="link-details"><i class="fa-solid fa-globe"></i> <span>جميع التخصصات</span></div>
+                <i class="fa-solid fa-chevron-left arrow"></i>
+            </a>
+
+            <div class="section-subtitle"><i class="fa-solid fa-hands-holding-child"></i> مبادرات الدفعة</div>
+            <a href="https://t.me/+e5BVsgTxwzE2YTQ0" target="_blank" class="link-item">
+                <div class="link-details"><i class="fa-solid fa-bullhorn"></i> <span>قناة المستوى</span></div>
                 <i class="fa-solid fa-chevron-left arrow"></i>
             </a>
         </div>
@@ -503,7 +554,7 @@
     <div class="footer">
         <div class="right-text">Developed by Sherisherre</div>
         <div class="left-icon">
-            <a href="https://t.me/Sherisherre" target="_blank" title="تلقرام">
+            <a href="https://t.me/Sherisherre" target="_blank" title="تلقرام Sherisherre">
                 <i class="fa-brands fa-telegram"></i>
             </a>
         </div>
